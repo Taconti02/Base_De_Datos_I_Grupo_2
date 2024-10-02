@@ -12,6 +12,11 @@
 ## CAPÍTULO I: INTRODUCCIÓN
 
 ### Caso de estudio
+**TEMA 1: **Diseño e Implementación de una Base de Datos para un Negocio de Venta de Productos 
+
+
+### Definición o planteamiento del problema
+
 Se necesita crear una base de datos para un negocio de venta de productos, en el cual el empleado pueda registrar las ventas que realiza.  
 Cada cliente tiene una identificación propia y se necesita saber su DNI, nombre, apellido, teléfono, email. 
 Cada empleado necesita estar registrado en el sistema con su nombre usuario, contraseña y el tipo de perfil al que pertenece. 
