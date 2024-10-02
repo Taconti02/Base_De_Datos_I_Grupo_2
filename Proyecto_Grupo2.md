@@ -5,8 +5,8 @@
 **Asignatura**: Bases de Datos I (FaCENA-UNNE)
 
 **Integrantes**:
- -Fernandez Lezcano, Luciana Itati 
- -Coronas Almada, Priscila Jezabel 
- -Conti, Tomás Ariel 
+ - Fernandez Lezcano, Luciana Itati 
+ - Coronas Almada, Priscila Jezabel 
+ - Conti, Tomás Ariel 
 
 **Año**: 2024
