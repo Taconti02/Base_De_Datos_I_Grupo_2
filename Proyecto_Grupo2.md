@@ -42,7 +42,8 @@ PRODUCT-CATEGORY  ||--|{  PRODUCT  : contains
 PRODUCT  ||--o{  ORDER-ITEM  : "ordered in"
 ```
 ### Diagrama relacional
-![diagrama_relacional](https://github.com/dovillegas/basesdatos_proyecto_estudio/blob/main/doc/Diagrama.jpeg)
+![diagrama_relacional](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/main/doc/Diagrama.jpeg)
+doc/Diagrama.jpeg
 
 ### Diccionario de datos
 
