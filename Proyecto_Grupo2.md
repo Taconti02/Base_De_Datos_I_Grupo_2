@@ -12,7 +12,7 @@
 ## CAPÍTULO I: INTRODUCCIÓN
 
 ### Caso de estudio
-####TEMA: Diseño e Implementación de una Base de Datos para un Negocio de Venta de Productos 
+#### TEMA: Diseño e Implementación de una Base de Datos para un Negocio de Venta de Productos 
 
 
 ### Definición o planteamiento del problema
