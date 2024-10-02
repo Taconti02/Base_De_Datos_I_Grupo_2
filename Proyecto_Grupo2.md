@@ -60,7 +60,7 @@ Desarrollar una base de datos para un negocio de venta de productos que permita 
 
 Acceso al documento [PDF](doc/diccionario_datos.pdf) del diccionario de datos.
 
-## CAPÍTULO VI: BIBLIOGRAFÍA DE CONSULTA
+## BIBLIOGRAFÍA DE CONSULTA
 
  1. Base de Datos 2.2.3 Entidad relación [En Línea] Disponible en [eLibro UNNE](https://elibro.net/es/ereader/unne/121283?page=52 "eLibro UNNE") Pulido Romero, E. Escobar Domínguez 
 
