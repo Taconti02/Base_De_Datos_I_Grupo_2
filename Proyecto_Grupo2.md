@@ -50,7 +50,7 @@ Desarrollar una base de datos para un negocio de venta de productos que permita 
    - Almacenar el precio unitario, categoría y stock disponible de cada producto. 
    - Asegurar la actualización constante del stock disponible tras cada venta. 
 
-
+## CAPÍTULO IV: DESARROLLO DEL TEMA / PRESENTACIÓN DE RESULTADOS 
 
 ### Diagrama relacional
 ![diagrama_relacional](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/main/doc/Diagrama.jpeg)
@@ -60,8 +60,8 @@ Desarrollar una base de datos para un negocio de venta de productos que permita 
 
 Acceso al documento [PDF](doc/diccionario_datos.pdf) del diccionario de datos.
 
-## BIBLIOGRAFÍA DE CONSULTA
+## CAPÍTULO VI: BIBLIOGRAFÍA DE CONSULTA
 
- 1. Base de Datos 2.2.3 Entidad relación [En Línea] Disponible en https://elibro.net/es/ereader/unne/121283?page=52 Pulido Romero, E. Escobar Domínguez 
+ 1. Base de Datos 2.2.3 Entidad relación [En Línea] Disponible en [eLibro UNNE](https://elibro.net/es/ereader/unne/121283?page=52 "eLibro UNNE") Pulido Romero, E. Escobar Domínguez 
 
 
