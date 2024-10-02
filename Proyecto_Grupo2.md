@@ -1,4 +1,4 @@
-# Trabajo de campo Grupo 22
+# Trabajo de campo Grupo 2
 
 **Asignatura**: Bases de Datos I (FaCENA-UNNE)
 
