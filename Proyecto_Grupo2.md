@@ -38,7 +38,7 @@ Acceso al documento [PDF](doc/diccionario_datos.pdf) del diccionario de datos.
 
 ## BIBLIOGRAFÍA DE CONSULTA
 
- 1. List item
+ 1. Base de Datos 2.2.3 Entidad relación [En Línea] Disponible en https://elibro.net/es/ereader/unne/121283?page=52 Pulido Romero, E. Escobar Domínguez 
  2. List item
  3. List item
  4. List item
