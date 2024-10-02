@@ -34,7 +34,7 @@ Maecenas molestie lacus tincidunt, placerat dolor et, ullamcorper erat. Mauris t
 
 ### Diccionario de datos
 
-Acceso al documento [PDF](doc/Diccionario de Datos.pdf) del diccionario de datos.
+Acceso al documento [PDF](doc/diccionario_datos.pdf) del diccionario de datos.
 
 ## BIBLIOGRAFÍA DE CONSULTA
 
