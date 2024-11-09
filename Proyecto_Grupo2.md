@@ -141,9 +141,11 @@ GO
 ### Optimización de consultas a través de índices
 
 **¿Qué es un índice?**
+
 Un índice es una estructura de disco asociada con una tabla o una vista que acelera la recuperación de filas de la tabla o de la vista. Un índice contiene claves generadas a partir de una o varias columnas de la tabla o la vista. Dichas claves están almacenadas en una estructura (árbol b) que permite que SQL Server busque de forma rápida y eficiente la fila o filas asociadas a los valores de cada clave.
 
 **Optimización de consultas a través de índices**
+
 La optimización de consultas a través de índices es una técnica crucial para mejorar el rendimiento de las bases de datos. Los índices permiten a las bases de datos acceder a la información de manera más eficiente, similar a cómo un índice en un libro permite encontrar información rápidamente sin tener que leer cada página.
 
 **Ventajas de usar índices:**
@@ -153,6 +155,7 @@ La optimización de consultas a través de índices es una técnica crucial para
 - Minimización de la contención en operaciones concurrentes: En escenarios de alta concurrencia, los índices pueden ayudar a reducir la contención de bloqueo al permitir que las consultas accedan a las filas necesarias más rápido.
 
 **Tipos de Índices y sus Aplicaciones**
+
 *Índices Clustered (Agrupados):*
 - Determinan el orden físico de los datos en la tabla.
 - Solo puede haber uno por tabla.
@@ -172,9 +175,11 @@ La optimización de consultas a través de índices es una técnica crucial para
 - Son útiles para consultas que filtran por múltiples columnas.
 
 **Índices y restricciones**
+
 Los índices se crean automáticamente cuando las restricciones PRIMARY KEY y UNIQUE se definen en las columnas de tabla. Por ejemplo, cuando crea una tabla con una restricción UNIQUE, el motor de base de datos crea automáticamente un índice no agrupado. Si configura una restricción PRIMARY KEY, el motor de base de datos crea automáticamente un índice agrupado, a menos que ya exista uno. Cuando intenta aplicar una restricción PRIMARY KEY en una tabla existente y ya existe un índice agrupado en esa tabla, SQL Server aplica la clave principal mediante un índice no agrupado.
 
 **Impacto de los Índices en el Rendimiento**
+
 Los índices mejoran el rendimiento de las consultas SELECT al reducir la cantidad de datos que el motor de la base de datos debe escanear. Sin embargo, los índices también pueden aumentar el tiempo de las operaciones de inserción, actualización y eliminación, ya que estas operaciones requieren mantener los índices actualizados.
 
 ```sql
