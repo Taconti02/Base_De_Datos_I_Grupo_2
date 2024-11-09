@@ -140,6 +140,180 @@ GO
 ---
 ### Optimización de consultas a través de índices
 
+# ¿Qué es un índice?
+Un índice es una estructura de disco asociada con una tabla o una vista que acelera la recuperación de filas de la tabla o de la vista. Un índice contiene claves generadas a partir de una o varias columnas de la tabla o la vista. Dichas claves están almacenadas en una estructura (árbol b) que permite que SQL Server busque de forma rápida y eficiente la fila o filas asociadas a los valores de cada clave.
+
+# Optimización de consultas a través de índices
+La optimización de consultas a través de índices es una técnica crucial para mejorar el rendimiento de las bases de datos. Los índices permiten a las bases de datos acceder a la información de manera más eficiente, similar a cómo un índice en un libro permite encontrar información rápidamente sin tener que leer cada página.
+
+# Ventajas de usar índices:
+- Mejora del rendimiento de las consultas: Los índices permiten a SQL Server encontrar filas rápidamente sin tener que escanear toda la tabla, lo cual acelera significativamente las consultas SELECT.
+- Reducción de tiempos de respuesta: Los tiempos de respuesta se reducen drásticamente, especialmente en tablas grandes, ya que los índices permiten saltar directamente a los registros relevantes.
+- Optimización de operaciones de unión (JOIN): Los índices pueden optimizar las operaciones de unión entre tablas, haciendo que estas operaciones sean más rápidas al facilitar el acceso a las filas relacionadas.
+- Minimización de la contención en operaciones concurrentes: En escenarios de alta concurrencia, los índices pueden ayudar a reducir la contención de bloqueo al permitir que las consultas accedan a las filas necesarias más rápido.
+
+# Tipos de Índices y sus Aplicaciones
+## Índices Clustered (Agrupados):
+- Determinan el orden físico de los datos en la tabla.
+- Solo puede haber uno por tabla.
+- Son útiles para consultas que devuelven rangos de datos grandes.
+
+## Índices Non-Clustered (No Agrupados):
+- No alteran el orden físico de los datos.
+- Puede haber múltiples índices non-clustered en una tabla.
+- Son útiles para consultas que buscan valores específicos.
+
+## Índices Únicos:
+- Aseguran que los valores en la columna indexada sean únicos.
+- Son útiles para columnas como IDs o emails.
+
+## Índices Compuestos:
+- Incluyen más de una columna.
+- Son útiles para consultas que filtran por múltiples columnas.
+
+# Índices y restricciones
+Los índices se crean automáticamente cuando las restricciones PRIMARY KEY y UNIQUE se definen en las columnas de tabla. Por ejemplo, cuando crea una tabla con una restricción UNIQUE, el motor de base de datos crea automáticamente un índice no agrupado. Si configura una restricción PRIMARY KEY, el motor de base de datos crea automáticamente un índice agrupado, a menos que ya exista uno. Cuando intenta aplicar una restricción PRIMARY KEY en una tabla existente y ya existe un índice agrupado en esa tabla, SQL Server aplica la clave principal mediante un índice no agrupado.
+
+# Impacto de los Índices en el Rendimiento
+Los índices mejoran el rendimiento de las consultas SELECT al reducir la cantidad de datos que el motor de la base de datos debe escanear. Sin embargo, los índices también pueden aumentar el tiempo de las operaciones de inserción, actualización y eliminación, ya que estas operaciones requieren mantener los índices actualizados.
+
+```sql
+USE taller_db_1;
+GO
+
+-- Insertar datos de prueba en la tabla Tipo_Venta
+INSERT INTO Tipo_Venta (id_tipo, descripcion)
+VALUES 
+(1, 'Venta Directa'),
+(2, 'Venta Online'),
+(3, 'Venta Telefónica');
+GO
+
+
+
+-- Insertar datos de prueba en la tabla Perfil
+INSERT INTO Perfil (id_perfil, descripcion)
+VALUES 
+(1, 'Administrador'),
+(2, 'Usuario'),
+(3, 'Invitado');
+GO
+
+
+-- Insertar datos de prueba en la tabla Persona
+INSERT INTO Persona (nombre, apellido, estado, email, sexo, telefono, cumpleaños, dni)
+VALUES 
+('Juan', 'Perez', 'A', 'juan.perez@example.com', 'M', '123456789', '1980-01-01', 12345678),
+('Maria', 'Garcia', 'A', 'maria.garcia@example.com', 'F', '987654321', '1985-02-02', 87654321),
+('Carlos', 'Lopez', 'A', 'carlos.lopez@example.com', 'M', '456789123', '1990-03-03', 23456789),
+('Ana', 'Martinez', 'A', 'ana.martinez@example.com', 'F', '789123456', '1995-04-04', 34567890),
+('Jose', 'Rodriguez', 'A', 'jose.rodriguez@example.com', 'M', '321654987', '2000-05-05', 45678912);
+GO
+
+-- Insertar datos de prueba en la tabla Cliente
+INSERT INTO Cliente (id_cliente)
+VALUES 
+(1),
+(2),
+(3),
+(4),
+(5);
+GO
+
+
+-- Insertar datos de prueba en la tabla Usuario con nombres válidos
+INSERT INTO Usuario (id_usuario, nombre_usuario, contraseña, id_perfil)
+VALUES 
+(1, 'userone', 'password1', 1),
+(2, 'usertwo', 'password2', 1),
+(3, 'userthree', 'password3', 1),
+(4, 'userfour', 'password4', 1),
+(5, 'userfive', 'password5', 1);
+GO
+
+
+-- Insertar datos de prueba en la tabla Venta 10000 datos
+BEGIN TRANSACTION;
+DECLARE @i INT = 0;
+WHILE @i < 10000
+BEGIN
+    INSERT INTO Venta (fecha_venta, total_venta, id_usuario, id_tipo, id_cliente)
+    VALUES (DATEADD(DAY, @i % 365, '2023-01-01'), @i * 0.1, @i % 5 + 1, @i % 3 + 1, @i % 5 + 1);
+    SET @i = @i + 1;
+
+    IF @i % 1000 = 0 -- Cada 1,000 inserciones, confirmamos la transacción
+    BEGIN
+        COMMIT TRANSACTION;
+        BEGIN TRANSACTION;
+    END
+END
+COMMIT TRANSACTION;
+GO
+
+
+
+-- Consulta con índice no agrupado incluyendo columnas adicionales
+SELECT * FROM Venta WHERE fecha_venta BETWEEN '2023-01-01' AND '2023-12-31';
+GO
+
+USE taller_db_1;
+GO
+
+-- Insertar un millón de registros en la tabla Venta
+BEGIN TRANSACTION;
+DECLARE @i INT = 0;
+WHILE @i < 1000000
+BEGIN
+    INSERT INTO Venta (fecha_venta, total_venta, id_usuario, id_tipo, id_cliente)
+    VALUES (DATEADD(DAY, @i % 365, '2023-01-01'), @i * 0.1, @i % 5 + 1, @i % 3 + 1, @i % 5 + 1);
+    SET @i = @i + 1;
+
+    IF @i % 10000 = 0 -- Cada 10,000 inserciones, confirmamos la transacción
+    BEGIN
+        COMMIT TRANSACTION;
+        BEGIN TRANSACTION;
+    END
+END
+COMMIT TRANSACTION;
+GO
+
+
+
+-- Consulta sin índice
+SELECT * FROM Venta WHERE fecha_venta BETWEEN '2023-01-01' AND '2023-12-31';
+GO
+
+
+-- Crear índice no agrupado en fecha_venta
+CREATE NONCLUSTERED INDEX IDX_Venta_FechaVenta ON Venta(fecha_venta);
+GO
+
+-- Consulta con índice no agrupado en fecha_venta
+SELECT * FROM Venta WHERE fecha_venta BETWEEN '2023-01-01' AND '2023-12-31';
+GO
+
+-- Eliminar índice no agrupado en fecha_venta
+DROP INDEX IDX_Venta_FechaVenta ON Venta;
+GO
+
+-- Eliminar índice no agrupado en fecha_venta
+DROP INDEX IDX_Venta_FechaVenta_ClienteId ON Venta;
+GO
+
+-- Crear índice no agrupado con columnas adicionales
+CREATE NONCLUSTERED INDEX IDX_Venta_FechaVenta_ClienteId ON Venta(fecha_venta, id_cliente);
+GO
+
+-- Consulta con índice no agrupado en fecha_venta e id_cliente
+SELECT * FROM Venta WHERE fecha_venta BETWEEN '2023-01-01' AND '2023-12-31';
+GO
+
+-- Eliminar índice no agrupado en fecha_venta
+DROP INDEX IDX_Venta_FechaVenta_ClienteId ON Venta;
+GO
+```
+
+
 
 ---
 ### Manejo de transacciones y transacciones anidadas
