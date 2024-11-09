@@ -182,6 +182,9 @@ Los índices se crean automáticamente cuando las restricciones PRIMARY KEY y UN
 
 Los índices mejoran el rendimiento de las consultas SELECT al reducir la cantidad de datos que el motor de la base de datos debe escanear. Sin embargo, los índices también pueden aumentar el tiempo de las operaciones de inserción, actualización y eliminación, ya que estas operaciones requieren mantener los índices actualizados.
 
+**Prueba en script SQL de indices**
+
+A continuacion se prueban los indices:
 ```sql
 USE taller_db_1;
 GO
