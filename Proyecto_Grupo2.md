@@ -135,6 +135,7 @@ BEGIN
    SELECT * FROM Persona;
 END
 GO
+```
 
 ---
 ### Optimización de consultas a través de índices
