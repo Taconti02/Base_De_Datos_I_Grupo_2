@@ -55,6 +55,18 @@ Desarrollar una base de datos para un negocio de venta de productos que permita 
    - Almacenar el precio unitario, categoría y stock disponible de cada producto. 
    - Asegurar la actualización constante del stock disponible tras cada venta. 
 
+## CAPÍTULO II: MARCO CONCEPTUAL O REFERENCIAL
+
+### MANEJO DE PERMISOS A NIVEL DE USUARIOS DE BASE DE DATOS
+
+### PROCEDIMIENTOS Y FUNCIONES ALMACENADAS
+
+### OPTIMIZACIÓN DE CONSULTAS A TRAVÉS DE ÍNDICES
+
+### MANEJO DE TRANSACCIONES Y TRANSACCIONES ANIDADAS
+
+## CAPÍTULO III: METODOLOGÍA SEGUIDA
+
 ## CAPÍTULO IV: DESARROLLO DEL TEMA / PRESENTACIÓN DE RESULTADOS 
 
 ### Diagrama relacional
@@ -64,6 +76,8 @@ Desarrollar una base de datos para un negocio de venta de productos que permita 
 ### Diccionario de datos
 
 Acceso al documento [PDF](doc/diccionario_datos.pdf) del diccionario de datos.
+
+## CAPÍTULO V: CONCLUSIONES
 
 ## BIBLIOGRAFÍA DE CONSULTA
 
