@@ -93,6 +93,48 @@ Los **globales** presentan dos signos de número (##) antes del nombre; son visi
 - **Sistema:**
 Los procedimientos del sistema se incluyen con el motor de base de datos y están almacenados físicamente en la base de datos interna y oculta Resource, pero se muestran de forma lógica en el esquema sys de cada base de datos.
 
+```sql
+/*** Este procedimiento almacenado nos permite cargar una nueva persona a la base de datos ***/
+CREATE PROC PA_CargarPersona
+   @id_persona INT,
+   @nombre VARCHAR(50),
+   @apellido VARCHAR(50),
+   @estado VARCHAR(11),
+   @email VARCHAR(50),
+   @sexo VARCHAR(11),
+   @telefono VARCHAR(30),
+   @cumpleaños DATE,
+   @dni INT
+AS
+BEGIN
+   INSERT INTO Persona
+   VALUES (
+      @id_persona,
+      @nombre,
+      @apellido,
+      @estado,
+      @email,
+      @sexo,
+      @telefono,
+      @cumpleaños,
+      @dni
+   );
+
+   SELECT 
+      @id_persona = id_persona,
+      @nombre = nombre,
+      @apellido = apellido,
+      @estado = estado,
+      @email = email,
+      @sexo = sexo,
+      @telefono = telefono,
+      @cumpleaños = cumpleaños,
+      @dni = dni
+   FROM Persona;
+
+   SELECT * FROM Persona;
+END
+GO
 
 ---
 ### Optimización de consultas a través de índices
