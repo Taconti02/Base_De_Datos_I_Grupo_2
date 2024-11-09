@@ -140,19 +140,19 @@ GO
 ---
 ### Optimización de consultas a través de índices
 
-# ¿Qué es un índice?
+**¿Qué es un índice?**
 Un índice es una estructura de disco asociada con una tabla o una vista que acelera la recuperación de filas de la tabla o de la vista. Un índice contiene claves generadas a partir de una o varias columnas de la tabla o la vista. Dichas claves están almacenadas en una estructura (árbol b) que permite que SQL Server busque de forma rápida y eficiente la fila o filas asociadas a los valores de cada clave.
 
-# Optimización de consultas a través de índices
+**Optimización de consultas a través de índices**
 La optimización de consultas a través de índices es una técnica crucial para mejorar el rendimiento de las bases de datos. Los índices permiten a las bases de datos acceder a la información de manera más eficiente, similar a cómo un índice en un libro permite encontrar información rápidamente sin tener que leer cada página.
 
-# Ventajas de usar índices:
+**Ventajas de usar índices:**
 - Mejora del rendimiento de las consultas: Los índices permiten a SQL Server encontrar filas rápidamente sin tener que escanear toda la tabla, lo cual acelera significativamente las consultas SELECT.
 - Reducción de tiempos de respuesta: Los tiempos de respuesta se reducen drásticamente, especialmente en tablas grandes, ya que los índices permiten saltar directamente a los registros relevantes.
 - Optimización de operaciones de unión (JOIN): Los índices pueden optimizar las operaciones de unión entre tablas, haciendo que estas operaciones sean más rápidas al facilitar el acceso a las filas relacionadas.
 - Minimización de la contención en operaciones concurrentes: En escenarios de alta concurrencia, los índices pueden ayudar a reducir la contención de bloqueo al permitir que las consultas accedan a las filas necesarias más rápido.
 
-# Tipos de Índices y sus Aplicaciones
+**Tipos de Índices y sus Aplicaciones**
 ## Índices Clustered (Agrupados):
 - Determinan el orden físico de los datos en la tabla.
 - Solo puede haber uno por tabla.
