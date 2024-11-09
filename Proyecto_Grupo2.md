@@ -57,13 +57,13 @@ Desarrollar una base de datos para un negocio de venta de productos que permita 
 
 ## CAPÍTULO II: MARCO CONCEPTUAL O REFERENCIAL
 
-### MANEJO DE PERMISOS A NIVEL DE USUARIOS DE BASE DE DATOS
+### Manejo de Permisos a nivel de usuarios de base de datos
 
-### PROCEDIMIENTOS Y FUNCIONES ALMACENADAS
+### Procedimientos y funciones almacenadas
 
-### OPTIMIZACIÓN DE CONSULTAS A TRAVÉS DE ÍNDICES
+### Optimización de consultas a través de índices
 
-### MANEJO DE TRANSACCIONES Y TRANSACCIONES ANIDADAS
+### Majero de transacciones y transacciones anidadas
 
 ## CAPÍTULO III: METODOLOGÍA SEGUIDA
 
