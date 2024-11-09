@@ -62,7 +62,7 @@ Desarrollar una base de datos para un negocio de venta de productos que permita 
 ---
 ### Procedimientos y funciones almacenadas
 
-Un procedimiento almacenado en SQL Server es un conjunto de una o más instrucciones Transact-SQL o una referencia a un método del Common Language Runtime (CLR) de Microsoft .NET Framework. Similar a las estructuras en otros lenguajes de programación, los procedimientos almacenados pueden aceptar parámetros de entrada, devolver múltiples valores en forma de parámetros de salida, realizar operaciones en la base de datos (incluyendo llamadas a otros procedimientos) y retornar un valor de estado que indica al programa si la operación se completó con éxito o si ocurrieron errores, junto con sus causas.
+Un procedimiento almacenado en SQL Server es un conjunto de una o más instrucciones Transact-SQL que se almacena asociado a una base de datos. Similar a las estructuras en otros lenguajes de programación, los procedimientos almacenados pueden aceptar parámetros de entrada, devolver múltiples valores en forma de parámetros de salida, realizar operaciones en la base de datos (incluyendo llamadas a otros procedimientos) y retornar un valor de estado que indica al programa si la operación se completó con éxito o si ocurrieron errores, junto con sus causas.
 
 Algunas de las **ventajas** de usar estos procesimientos son:
 - **Tráfico de red reducido entre el cliente y el servidor:**
@@ -92,6 +92,7 @@ Los **globales** presentan dos signos de número (##) antes del nombre; son visi
 
 - **Sistema:**
 Los procedimientos del sistema se incluyen con el motor de base de datos y están almacenados físicamente en la base de datos interna y oculta Resource, pero se muestran de forma lógica en el esquema sys de cada base de datos.
+
 
 ---
 ### Optimización de consultas a través de índices
