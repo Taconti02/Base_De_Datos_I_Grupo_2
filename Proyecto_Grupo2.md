@@ -165,6 +165,7 @@ Acceso al documento [PDF](doc/diccionario_datos.pdf) del diccionario de datos.
 2. Microsoft Ignite [En Línea] Disponible en [Learn/SQL/Procedimientos Almacenados](https://learn.microsoft.com/es-es/sql/relational-databases/stored-procedures/stored-procedures-database-engine?view=sql-server-ver16)
 
 Optimización de consultas a través de índices:
+
 3. Cañizares, L. (2008). Bases de datos. Teoría y diseño (2ª ed.). Alfaomega.
 4. Salvatierra, H. (2012). Optimización de consultas SQL en bases de datos relacionales. Editorial UOC
 5. Microsoft Ignite [En Línea]. Disponible en Learn/SQL/Procedimientos Almacenados. Recuperado de https://learn.microsoft.com/es-es/sql/relational-databases/indexes/clustered-and-nonclustered-indexes-described?view=sql-server-ver16
