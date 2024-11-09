@@ -184,7 +184,7 @@ Los índices mejoran el rendimiento de las consultas SELECT al reducir la cantid
 
 **Prueba en script SQL de indices**
 
-A continuacion se prueban los indices:
+A continuacion se prueban los indices usando codigo SQL, teniendo como base el script que creo la estructura inicial:
 ```sql
 USE taller_db_1;
 GO
