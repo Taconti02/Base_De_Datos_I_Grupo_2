@@ -24,7 +24,7 @@ go
 if object_id('Producto') is not null DROP TABLE Producto;
 go
 ---------------------
-if object_id('Pago') is not null DROP TABLE Tipo_Venta;
+if object_id('Pago') is not null DROP TABLE Pago;
 go
 ---------------------
 if object_id('Usuario') is not null DROP TABLE Usuario;
