@@ -220,6 +220,21 @@ GO
 
 ---
 ### Manejo de transacciones y transacciones anidadas
+Una transacción es un conjunto de operaciones que se tratan como una única unidad, es decir, todas las modificaciones realizadas dentro de la transacción deben confirmarse en conjunto o revertirse por completo en caso de error. Para iniciar una transacción se utiliza la sentencia BEGIN TRAN. Si alguna operación dentro de la transacción falla, es necesario revertir todos los cambios realizados con ROLLBACK TRAN, devolviendo la base de datos a su estado inicial. Si la transacción tiene éxito, se finaliza con COMMIT TRAN y los cambios realizados se guardan permanentemente en la base de datos. Además, los puntos de recuperación, o SavePoints, permiten hacer reversiones parciales, lo que significa que puedes deshacer solo hasta un punto específico de la transacción sin tener que revertirla por completo.
+
+SQL Server admite varios modos de transacción, cada uno con características específicas:
+
+- **Transacciones de confirmación automática:** Cada instrucción que se ejecuta se trata como una transacción independiente. No es necesario especificar un inicio ni fin de transacción; cada operación se confirma o se revierte automáticamente.
+
+- **Transacciones explícitas:** El usuario controla explícitamente el inicio y fin de la transacción. Una transacción comienza con BEGIN TRANSACTION y se completa con COMMIT (para confirmar los cambios) o ROLLBACK (para revertirlos en caso de error).
+
+- **Transacciones implícitas:** Cada vez que una transacción termina (con COMMIT o ROLLBACK), SQL Server inicia automáticamente una nueva transacción. Sin embargo, cada transacción sigue necesitando un COMMIT o ROLLBACK explícito para completar o revertir los cambios.
+
+- **Transacciones de ámbito de lote:** Este tipo de transacción aplica solo cuando se usa una sesión de MARS (Conjuntos de Resultados Activos Múltiples), que permite ejecutar múltiples consultas al mismo tiempo en la misma conexión. Las transacciones en MARS se llaman "de ámbito de lote" porque, si no se confirman o revierten al finalizar el lote de instrucciones, SQL Server revierte automáticamente los cambios para mantener la integridad de los datos.
+
+#### Transacciones anidadas
+SQL Server también permite el uso de transacciones anidadas, es decir, transacciones dentro de otras transacciones. Esto significa que se puede iniciar una nueva transacción sin haber terminado la anterior. Cada transacción interna tiene sus propias instrucciones de BEGIN TRANSACTION, COMMIT, y ROLLBACK, aunque la confirmación o reversión final de los cambios depende de la transacción externa principal: solo se confirmarán permanentemente si todas las transacciones, incluyendo las anidadas, se completan correctamente.
+
 
 
 ## CAPÍTULO III: METODOLOGÍA SEGUIDA
@@ -243,4 +258,4 @@ Acceso al documento [PDF](doc/diccionario_datos.pdf) del diccionario de datos.
 3. Cañizares, L. (2008). Bases de datos. Teoría y diseño (2ª ed.). Alfaomega.
 4. Salvatierra, H. (2012). Optimización de consultas SQL en bases de datos relacionales. Editorial UOC
 5. Microsoft Ignite [En Línea]. Disponible en [Learn/SQL/Índices clúster y no clúster](https://learn.microsoft.com/es-es/sql/relational-databases/indexes/clustered-and-nonclustered-indexes-described?view=sql-server-ver16)
-
+6. Microsoft Ignite [En Línea]. Disponible en [Learn/SQL/Transacciones (Transact-SQL)](https://learn.microsoft.com/es-es/sql/t-sql/language-elements/transactions-transact-sql?view=sql-server-ver16)
