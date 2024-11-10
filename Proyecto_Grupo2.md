@@ -213,12 +213,9 @@ END
 COMMIT TRANSACTION;
 GO
 
-
-
 -- Consulta sin índice
 SELECT * FROM Venta WHERE fecha_venta BETWEEN '2023-01-01' AND '2023-12-31';
 GO
-
 
 -- Crear índice no agrupado en fecha_venta
 CREATE NONCLUSTERED INDEX IDX_Venta_FechaVenta ON Venta(fecha_venta);
