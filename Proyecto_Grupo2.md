@@ -58,24 +58,27 @@ Desarrollar una base de datos para un negocio de venta de productos que permita 
 
 ### Manejo de Permisos a Nivel de Usuarios de Base de Datos
 
-#### Conceptos Básicos
+**Conceptos Básicos**
+
 Para garantizar la seguridad y la integridad de la base de datos, es crucial manejar adecuadamente los permisos a nivel de usuarios. Los permisos determinan qué acciones pueden realizar los usuarios dentro de la base de datos. A continuación, se describen los conceptos fundamentales:
 
-#### Roles de Usuarios
+**Roles de Usuarios**
    - Administrador: Tiene todos los permisos y puede gestionar otros usuarios.
    - Empleado: Permisos para registrar y consultar ventas.
    - Gerente: Permisos para consultar sus datos personales y el historial de compras.
 
-#### Tipos de Permisos
+**Tipos de Permisos**
    - SELECT: Permite leer datos.
    - INSERT: Permite insertar nuevos datos.
    - UPDATE: Permite modificar datos existentes.
    - DELETE: Permite eliminar datos.
 
-#### Seguridad a Nivel de Objeto
+**Seguridad a Nivel de Objeto**
+
 Permite definir permisos específicos para tablas, vistas, procedimientos almacenados, etc.
 
-#### Implementación de Permisos
+**Implementación de Permisos**
+
 Creación de Usuarios y Asignación de Roles:
 
 ```sql
@@ -109,19 +112,19 @@ GRANT SELECT ON TABLE clientes TO Empleado;
 GRANT SELECT ON TABLE clientes TO Gerente;
 ```
 
-#### Recomendaciones de Seguridad:
+**Recomendaciones de Seguridad:**
 
-#### Mínimo Privilegio
-Asignar solo los permisos necesarios para que los usuarios realicen sus tareas. Esto reduce el riesgo de accesos no autorizados o errores accidentales.
+**Mínimo Privilegio**
+- Asignar solo los permisos necesarios para que los usuarios realicen sus tareas. Esto reduce el riesgo de accesos no autorizados o errores accidentales.
 
-#### Revisión Periódica
-Revisar y ajustar permisos regularmente para adaptarse a cambios en roles y responsabilidades. Es importante eliminar los permisos de los usuarios que ya no los necesitan.
+**Revisión Periódica**
+- Revisar y ajustar permisos regularmente para adaptarse a cambios en roles y responsabilidades. Es importante eliminar los permisos de los usuarios que ya no los necesitan.
 
-#### Monitoreo y Auditoría
-Mantener un registro de las actividades de los usuarios para detectar y prevenir accesos no autorizados. Herramientas de monitoreo y auditoría pueden ayudar a identificar actividades sospechosas o violaciones de seguridad.
+**Monitoreo y Auditoría**
+- Mantener un registro de las actividades de los usuarios para detectar y prevenir accesos no autorizados. Herramientas de monitoreo y auditoría pueden ayudar a identificar actividades sospechosas o violaciones de seguridad.
 
-#### Buenas Prácticas Adicionales
-#### Uso de Roles Predefinidos:
+**Buenas Prácticas Adicionales**
+Uso de Roles Predefinidos:
 
    - READONLY: Un rol para usuarios que solo necesitan leer datos.
    - READWRITE: Un rol para usuarios que necesitan leer y escribir datos.
@@ -139,18 +142,19 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO READWRITE
 GRANT ALL PRIVILEGES ON SCHEMA public TO ADMIN;
 ```
 
-#### Implementación de Roles y Usuarios en un Proyecto Real:
+**Implementación de Roles y Usuarios en un Proyecto Real:**
 
-#### Planificación de Roles y Permisos:
+**Planificación de Roles y Permisos:**
    - Analizar las tareas y responsabilidades de cada tipo de usuario.
    - Definir claramente los roles y los permisos necesarios para cada rol.
    - Documentación de Roles y Permisos:
    - Mantener una documentación detallada de todos los roles, permisos y usuarios. Actualizar la documentación regularmente para reflejar cualquier cambio.
 
-#### Capacitación y Concienciación
+**Capacitación y Concienciación**
+
 Capacitar a los usuarios sobre la importancia de la seguridad y las mejores prácticas, fomentando una cultura de seguridad dentro de la organización.
 
-#### Ejemplo Completo de Implementación:
+Ejemplo Completo de Implementación:
 
 ```sql
 -- Crear roles
