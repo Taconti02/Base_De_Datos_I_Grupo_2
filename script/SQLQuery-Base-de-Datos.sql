@@ -122,7 +122,7 @@ CREATE TABLE Venta
   id_cliente INT NOT NULL,
   CONSTRAINT PK_Venta_id PRIMARY KEY (id_venta),
   CONSTRAINT FK_Venta_id_usuario FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario),
-  CONSTRAINT FK_Venta_id_tipo FOREIGN KEY (id_tipo) REFERENCES Tipo_Venta(id_tipo),
+  CONSTRAINT FK_Venta_id_tipo FOREIGN KEY (id_tipo) REFERENCES Pago(id_tipo),
   CONSTRAINT FK_Venta_id_cliente FOREIGN KEY (id_cliente) REFERENCES Cliente(id_cliente),
 )
 go
