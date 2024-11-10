@@ -39,9 +39,6 @@ go
 if object_id('Persona') is not null DROP TABLE Persona;
 go
 ---------------------
-if object_id('Backup_Registro') is not null DROP TABLE Backup_Registro;
-go
----------------------
 
 CREATE TABLE Persona
 (
@@ -145,16 +142,6 @@ CREATE TABLE Detalle_Venta
   CONSTRAINT PK_Detalle_Venta_id PRIMARY KEY (id_detalle),
   CONSTRAINT FK_Detalle_Venta_id_producto FOREIGN KEY (id_producto) REFERENCES Producto(id_producto),
   CONSTRAINT FK_Detalle_Venta_id_venta FOREIGN KEY (id_venta) REFERENCES Venta(id_venta)
-)
-go
-
-CREATE TABLE Backup_Registro
-(
-  id_backup INT IDENTITY(1,1) PRIMARY KEY,
-  fecha_backup DATETIME NOT NULL DEFAULT GETDATE(),
-  id_usuario INT NOT NULL,
-  ruta_backup VARCHAR(255) NOT NULL,
-  CONSTRAINT FK_Backup_Registro_id_usuario FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario)
 )
 go
 
