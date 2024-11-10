@@ -185,80 +185,8 @@ Los índices mejoran el rendimiento de las consultas SELECT al reducir la cantid
 **Prueba en script SQL de indices**
 
 A continuacion se prueban los indices usando codigo SQL, teniendo como base el script que creo la estructura inicial:
+
 ```sql
-USE taller_db_1;
-GO
-
--- Insertar datos de prueba en la tabla Tipo_Venta
-INSERT INTO Tipo_Venta (id_tipo, descripcion)
-VALUES 
-(1, 'Venta Directa'),
-(2, 'Venta Online'),
-(3, 'Venta Telefónica');
-GO
-
-
-
--- Insertar datos de prueba en la tabla Perfil
-INSERT INTO Perfil (id_perfil, descripcion)
-VALUES 
-(1, 'Administrador'),
-(2, 'Usuario'),
-(3, 'Invitado');
-GO
-
-
--- Insertar datos de prueba en la tabla Persona
-INSERT INTO Persona (nombre, apellido, estado, email, sexo, telefono, cumpleaños, dni)
-VALUES 
-('Juan', 'Perez', 'A', 'juan.perez@example.com', 'M', '123456789', '1980-01-01', 12345678),
-('Maria', 'Garcia', 'A', 'maria.garcia@example.com', 'F', '987654321', '1985-02-02', 87654321),
-('Carlos', 'Lopez', 'A', 'carlos.lopez@example.com', 'M', '456789123', '1990-03-03', 23456789),
-('Ana', 'Martinez', 'A', 'ana.martinez@example.com', 'F', '789123456', '1995-04-04', 34567890),
-('Jose', 'Rodriguez', 'A', 'jose.rodriguez@example.com', 'M', '321654987', '2000-05-05', 45678912);
-GO
-
--- Insertar datos de prueba en la tabla Cliente
-INSERT INTO Cliente (id_cliente)
-VALUES 
-(1),
-(2),
-(3),
-(4),
-(5);
-GO
-
-
--- Insertar datos de prueba en la tabla Usuario con nombres válidos
-INSERT INTO Usuario (id_usuario, nombre_usuario, contraseña, id_perfil)
-VALUES 
-(1, 'userone', 'password1', 1),
-(2, 'usertwo', 'password2', 1),
-(3, 'userthree', 'password3', 1),
-(4, 'userfour', 'password4', 1),
-(5, 'userfive', 'password5', 1);
-GO
-
-
--- Insertar datos de prueba en la tabla Venta 10000 datos
-BEGIN TRANSACTION;
-DECLARE @i INT = 0;
-WHILE @i < 10000
-BEGIN
-    INSERT INTO Venta (fecha_venta, total_venta, id_usuario, id_tipo, id_cliente)
-    VALUES (DATEADD(DAY, @i % 365, '2023-01-01'), @i * 0.1, @i % 5 + 1, @i % 3 + 1, @i % 5 + 1);
-    SET @i = @i + 1;
-
-    IF @i % 1000 = 0 -- Cada 1,000 inserciones, confirmamos la transacción
-    BEGIN
-        COMMIT TRANSACTION;
-        BEGIN TRANSACTION;
-    END
-END
-COMMIT TRANSACTION;
-GO
-
-
 
 -- Consulta con índice no agrupado incluyendo columnas adicionales
 SELECT * FROM Venta WHERE fecha_venta BETWEEN '2023-01-01' AND '2023-12-31';
@@ -320,8 +248,6 @@ GO
 DROP INDEX IDX_Venta_FechaVenta_ClienteId ON Venta;
 GO
 ```
-
-
 
 ---
 ### Manejo de transacciones y transacciones anidadas
