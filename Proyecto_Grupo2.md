@@ -94,6 +94,7 @@ Los **globales** presentan dos signos de número (##) antes del nombre; son visi
 Los procedimientos del sistema se incluyen con el motor de base de datos y están almacenados físicamente en la base de datos interna y oculta Resource, pero se muestran de forma lógica en el esquema sys de cada base de datos.
 
 ```sql
+
 /*** Este procedimiento almacenado nos permite cargar una nueva persona a la base de datos ***/
 CREATE PROC PA_CargarPersona
    @id_persona INT,
@@ -135,6 +136,7 @@ BEGIN
    SELECT * FROM Persona;
 END
 GO
+
 ```
 
 ---
@@ -235,7 +237,59 @@ SQL Server admite varios modos de transacción, cada uno con características es
 #### Transacciones anidadas
 SQL Server también permite el uso de transacciones anidadas, es decir, transacciones dentro de otras transacciones. Esto significa que se puede iniciar una nueva transacción sin haber terminado la anterior. Cada transacción interna tiene sus propias instrucciones de BEGIN TRANSACTION, COMMIT, y ROLLBACK, aunque la confirmación o reversión final de los cambios depende de la transacción externa principal: solo se confirmarán permanentemente si todas las transacciones, incluyendo las anidadas, se completan correctamente. 
 
+```sql
 
+/*** Esta transacción cancela la operación si no hay stock del producto ***/
+CREATE PROC comprarProducto (
+   @cod_usuario INT,
+   @cod_cliente INT,
+   @cod_producto INT,
+   @cantidad INT,
+   @total_venta FLOAT,
+   @fecha_venta DATE
+)
+AS
+BEGIN
+BEGIN TRY
+   BEGIN TRANSACTION
+
+   DECLARE @fecha_emision DATETIME
+   SELECT @fecha_emision = GETDATE()
+   
+   DECLARE @stock_actual INT
+   SELECT @stock_actual = stock FROM Producto WHERE id_producto = @cod_producto
+    
+   IF @stock_actual < @cantidad
+   BEGIN
+      PRINT 'No hay suficiente stock del producto';
+      ROLLBACK TRANSACTION
+      RETURN
+   END
+    
+   INSERT INTO Venta (fecha_venta, total_venta, id_usuario, id_cliente)
+   VALUES (@fecha_venta, @total_venta, @cod_usuario, @cod_cliente)
+    
+   DECLARE @id_venta INT
+   SELECT @id_venta = SCOPE_IDENTITY()
+    
+   INSERT INTO Detalle_Venta (cantidad, id_producto, subtotal, id_venta)
+   VALUES (@cantidad, @cod_producto, @total_venta, @id_venta)
+    
+   UPDATE Producto 
+   SET stock = stock - @cantidad
+   WHERE id_producto = @cod_producto
+    
+   COMMIT TRANSACTION
+END TRY
+BEGIN CATCH
+   ROLLBACK TRANSACTION
+   PRINT 'Ocurrió un error durante la operación';
+   THROW;
+END CATCH
+END
+GO
+
+```
 
 ## CAPÍTULO III: METODOLOGÍA SEGUIDA
 
