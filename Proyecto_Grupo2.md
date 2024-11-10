@@ -197,6 +197,82 @@ ALTER ROLE ADMIN ADD MEMBER admin;
 
 --- 
 
+### Procedimientos y funciones almacenadas
+Un procedimiento almacenado en SQL Server es un conjunto de una o más instrucciones Transact-SQL que se almacena asociado a una base de datos. Similar a las estructuras en otros lenguajes de programación, los procedimientos almacenados pueden aceptar parámetros de entrada, devolver múltiples valores en forma de parámetros de salida, realizar operaciones en la base de datos (incluyendo llamadas a otros procedimientos) y retornar un valor de estado que indica al programa si la operación se completó con éxito o si ocurrieron errores, junto con sus causas.
+Algunas de las **ventajas** de usar estos procesimientos son:
+
+- **Tráfico de red reducido entre el cliente y el servidor:**
+Los comandos se ejecutan en un único lote de código, reduciendo el tráfico de red entre el servidor y el cliente porque solo se envía la solicitud para ejecutar el procedimiento, en lugar de enviar cada comando por separado, haciéndolo más eficiente.
+
+- **Mayor Seguridad:**
+Un procedimiento almacenado en SQL Server permite que usuarios y programas accedan a objetos de la base de datos de forma controlada, sin necesitar permisos directos sobre ellos. Con la cláusula EXECUTE AS, los usuarios pueden ejecutar acciones específicas, como truncar una tabla, sin recibir permisos elevados. Esto simplifica la seguridad y protege los objetos.
+Además ayudan a evitar ataques de inyección SQL al tratar los parámetros como valores literales, pueden cifrarse para ocultar su código y mantener la seguridad de la lógica interna.
+
+- **Reutilización del código:**
+Cualquier operación de base de datos que se repita mucho es ideal para ponerla dentro de un procedimiento almacenado. Así no es necesario escribir el mismo de nuevo, reducienddo inconsistencias y permitiendo que cualquier usuario o aplicación con los permisos necesarios pueda usarlo y ejecutarlo.
+
+- **Mantenimiento sencillo:**
+Cuando las aplicaciones llaman a procedimientos y dejan las operaciones en la base de datos, solo es necesario actualizar los cambios en la base de datos misma. La aplicación sigue funcionando sin tener que conocer ni adaptarse a los cambios en el diseño, relaciones o procesos de la base de datos.
+
+- **Rendimiento Mejorado:**
+Cuando se compila un procedimiento por primera vez genera un plan de ejecución que se reutiliza en las siguientes ejecuciones, por lo que al no tener que crear un nuevo plan nos toma menos tiempo procesarlo. Sin embargo, si hay cambios importantes en las tablas o datos, este plan precompilado podría hacer que el procedimiento se ejecute más lentamente. En esos casos, recrear el procedimiento y forzar un nuevo plan de ejecución puede mejorar su rendimiento.
+
+**Tipos de procedimientos almacenados**
+- **Definidas por el usuario:**
+Se puede crear en una base de datos definida por el usuario o en todas las bases de datos del sistema excepto en la base de datos Resource. El procedimiento se puede desarrollar en Transact-SQL o como referencia a un método de Common Language Runtime (CLR) de Microsoft .NET Framework.
+
+- **Temporales:**
+Son una forma de procedimientos definidos por el usuario, que pueden ser permanente a menos que se almacenen en tempdb. Hay dos tipos: locales y globales.
+Los **locales** tienen como primer carácter de sus nombres un solo signo de número (#); solo son visibles en la conexión actual del usuario y se eliminan cuando se cierra la conexión.
+Los **globales** presentan dos signos de número (##) antes del nombre; son visibles para cualquier usuario después de su creación y se eliminan al final de la última sesión en la que se usa el procedimiento.
+
+- **Sistema:**
+Los procedimientos del sistema se incluyen con el motor de base de datos y están almacenados físicamente en la base de datos interna y oculta Resource, pero se muestran de forma lógica en el esquema sys de cada base de datos.
+
+```sql
+/*** Este procedimiento almacenado nos permite cargar una nueva persona a la base de datos ***/
+CREATE PROC PA_CargarPersona
+   @id_persona INT,
+   @nombre VARCHAR(50),
+   @apellido VARCHAR(50),
+   @estado VARCHAR(11),
+   @email VARCHAR(50),
+   @sexo VARCHAR(11),
+   @telefono VARCHAR(30),
+   @cumpleaños DATE,
+   @dni INT
+AS
+BEGIN
+   INSERT INTO Persona
+   VALUES (
+      @id_persona,
+      @nombre,
+      @apellido,
+      @estado,
+      @email,
+      @sexo,
+      @telefono,
+      @cumpleaños,
+      @dni
+   );
+   SELECT 
+      @id_persona = id_persona,
+      @nombre = nombre,
+      @apellido = apellido,
+      @estado = estado,
+      @email = email,
+      @sexo = sexo,
+      @telefono = telefono,
+      @cumpleaños = cumpleaños,
+      @dni = dni
+   FROM Persona;
+   SELECT * FROM Persona;
+END
+GO
+```
+
+---
+
 ### Optimización de consultas a través de índices
 
 **¿Qué es un índice?**
