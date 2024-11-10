@@ -24,7 +24,7 @@ go
 if object_id('Producto') is not null DROP TABLE Producto;
 go
 ---------------------
-if object_id('Tipo_Venta') is not null DROP TABLE Tipo_Venta;
+if object_id('Pago') is not null DROP TABLE Tipo_Venta;
 go
 ---------------------
 if object_id('Usuario') is not null DROP TABLE Usuario;
@@ -45,11 +45,8 @@ CREATE TABLE Persona
   id_persona INT IDENTITY(1,1),
   nombre VARCHAR(50) NOT NULL,
   apellido VARCHAR(50) NOT NULL,
-  estado VARCHAR(11) NOT NULL,
   email VARCHAR(50) NOT NULL,
-  sexo VARCHAR(11) NOT NULL,
   telefono VARCHAR(30) NOT NULL,
-  cumpleaños DATE NOT NULL,
   dni INT NOT NULL,
   CONSTRAINT PK_Persona_id PRIMARY KEY (id_persona),
   CONSTRAINT UQ_Persona_email UNIQUE (email),
@@ -86,11 +83,11 @@ CREATE TABLE Usuario
 )
 go
 
-CREATE TABLE Tipo_Venta
+CREATE TABLE Pago
 (
   id_tipo INT NOT NULL,
   descripcion VARCHAR(50) NOT NULL,
-  CONSTRAINT PK_Tipo_Venta_id PRIMARY KEY (id_tipo)
+  CONSTRAINT PK_Pago_id PRIMARY KEY (id_tipo)
 )
 go
 
@@ -98,9 +95,7 @@ CREATE TABLE Producto
 (
   id_producto INT IDENTITY(1,1),
   nombre_producto VARCHAR(50) NOT NULL,
-  precio_venta FLOAT NOT NULL,
-  precio_costo FLOAT NOT NULL,
-  eliminado VARCHAR(2) NOT NULL,
+  precio FLOAT NOT NULL,
   stock INT NOT NULL,
   id_categoria INT NOT NULL,
   CONSTRAINT PK_Producto_id PRIMARY KEY (id_producto),
@@ -149,16 +144,10 @@ go
 ---------- RESTRICCIONES ----------
 -----------------------------------
 
-ALTER TABLE Persona ADD CONSTRAINT CK_sexo CHECK (sexo IN ('M', 'F'));
 ALTER TABLE Persona ADD CONSTRAINT CK_nombre CHECK (nombre NOT LIKE '%[^A-Za-z ]%');
 ALTER TABLE Persona ADD CONSTRAINT CK_apellido CHECK (apellido NOT LIKE '%[^A-Za-z ]%');
 ALTER TABLE Persona ADD CONSTRAINT CK_telefono CHECK (telefono NOT LIKE '%[^0-9 +-%]');
 ALTER TABLE Persona ADD CONSTRAINT CK_dni CHECK (dni < 100000000 AND dni > 999999);
-ALTER TABLE Persona ADD CONSTRAINT CK_estado CHECK (estado IN ('A', 'I'));
-ALTER TABLE Persona ADD CONSTRAINT DF_estado DEFAULT 'A' for estado;
-
-ALTER TABLE Producto ADD CONSTRAINT CK_eliminado CHECK (eliminado IN ('N', 'S'));
-ALTER TABLE Producto ADD CONSTRAINT DF_eliminado DEFAULT 'N' for eliminado;
 
 ALTER TABLE Venta ADD CONSTRAINT DF_fecha_venta DEFAULT getdate() for fecha_venta;
 
