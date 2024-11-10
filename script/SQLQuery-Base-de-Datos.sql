@@ -2,10 +2,10 @@
 ---------- CREACIÓN BASE DEDATOS ----------
 -------------------------------------------
 
-CREATE DATABASE taller_db_1;
+CREATE DATABASE base_sistema_ventas;
 go
 
-USE taller_db_1;
+USE base_sistema_ventas;
 go
 
 ----------------------------------------
