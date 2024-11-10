@@ -142,17 +142,17 @@ GO
 
 **¿Qué es un índice?**
 
-Un índice es una estructura de disco asociada con una tabla o una vista que acelera la recuperación de filas de la tabla o de la vista. Un índice contiene claves generadas a partir de una o varias columnas de la tabla o la vista. Dichas claves están almacenadas en una estructura (árbol b) que permite que SQL Server busque de forma rápida y eficiente la fila o filas asociadas a los valores de cada clave.
+Un índice es una estructura de disco asociada con una tabla o una vista que acelera la recuperación de filas de la tabla o de la vista. Un índice contiene claves generadas a partir de una o varias columnas de la tabla o la vista. Dichas claves están almacenadas en una estructura (árbol B) que permite que SQL Server busque de forma rápida y eficiente la fila o filas asociadas a los valores de cada clave.
 
 **Optimización de consultas a través de índices**
 
 La optimización de consultas a través de índices es una técnica crucial para mejorar el rendimiento de las bases de datos. Los índices permiten a las bases de datos acceder a la información de manera más eficiente, similar a cómo un índice en un libro permite encontrar información rápidamente sin tener que leer cada página.
 
 **Ventajas de usar índices:**
-- Mejora del rendimiento de las consultas: Los índices permiten a SQL Server encontrar filas rápidamente sin tener que escanear toda la tabla, lo cual acelera significativamente las consultas SELECT.
-- Reducción de tiempos de respuesta: Los tiempos de respuesta se reducen drásticamente, especialmente en tablas grandes, ya que los índices permiten saltar directamente a los registros relevantes.
-- Optimización de operaciones de unión (JOIN): Los índices pueden optimizar las operaciones de unión entre tablas, haciendo que estas operaciones sean más rápidas al facilitar el acceso a las filas relacionadas.
-- Minimización de la contención en operaciones concurrentes: En escenarios de alta concurrencia, los índices pueden ayudar a reducir la contención de bloqueo al permitir que las consultas accedan a las filas necesarias más rápido.
+- **Mejora del rendimiento de las consultas:** Los índices permiten a SQL Server encontrar filas rápidamente sin tener que escanear toda la tabla, lo cual acelera significativamente las consultas SELECT.
+- **Reducción de tiempos de respuesta:** Los tiempos de respuesta se reducen drásticamente, especialmente en tablas grandes, ya que los índices permiten saltar directamente a los registros relevantes.
+- **Optimización de operaciones de unión (JOIN):** Los índices pueden optimizar las operaciones de unión entre tablas, haciendo que estas operaciones sean más rápidas al facilitar el acceso a las filas relacionadas.
+- **Minimización de la contención en operaciones concurrentes:** En escenarios de alta concurrencia, los índices pueden ayudar a reducir la contención de bloqueo al permitir que las consultas accedan a las filas necesarias más rápido.
 
 **Tipos de Índices y sus Aplicaciones**
 
@@ -188,32 +188,7 @@ A continuacion se prueban los indices usando codigo SQL, teniendo como base el s
 
 ```sql
 
--- Consulta con índice no agrupado incluyendo columnas adicionales
-SELECT * FROM Venta WHERE fecha_venta BETWEEN '2023-01-01' AND '2023-12-31';
-GO
-
-USE taller_db_1;
-GO
-
--- Insertar un millón de registros en la tabla Venta
-BEGIN TRANSACTION;
-DECLARE @i INT = 0;
-WHILE @i < 1000000
-BEGIN
-    INSERT INTO Venta (fecha_venta, total_venta, id_usuario, id_tipo, id_cliente)
-    VALUES (DATEADD(DAY, @i % 365, '2023-01-01'), @i * 0.1, @i % 5 + 1, @i % 3 + 1, @i % 5 + 1);
-    SET @i = @i + 1;
-
-    IF @i % 10000 = 0 -- Cada 10,000 inserciones, confirmamos la transacción
-    BEGIN
-        COMMIT TRANSACTION;
-        BEGIN TRANSACTION;
-    END
-END
-COMMIT TRANSACTION;
-GO
-
--- Consulta sin índice
+-- Consulta sin índice para probar rendimiento inicial
 SELECT * FROM Venta WHERE fecha_venta BETWEEN '2023-01-01' AND '2023-12-31';
 GO
 
@@ -225,25 +200,22 @@ GO
 SELECT * FROM Venta WHERE fecha_venta BETWEEN '2023-01-01' AND '2023-12-31';
 GO
 
--- Eliminar índice no agrupado en fecha_venta
+-- Eliminar índice no agrupado en fecha_venta para crear un índice compuesto
 DROP INDEX IDX_Venta_FechaVenta ON Venta;
 GO
 
--- Eliminar índice no agrupado en fecha_venta
-DROP INDEX IDX_Venta_FechaVenta_ClienteId ON Venta;
-GO
-
--- Crear índice no agrupado con columnas adicionales
+-- Crear índice no agrupado compuesto en fecha_venta e id_cliente
 CREATE NONCLUSTERED INDEX IDX_Venta_FechaVenta_ClienteId ON Venta(fecha_venta, id_cliente);
 GO
 
--- Consulta con índice no agrupado en fecha_venta e id_cliente
+-- Consulta con índice compuesto en fecha_venta e id_cliente
 SELECT * FROM Venta WHERE fecha_venta BETWEEN '2023-01-01' AND '2023-12-31';
 GO
 
--- Eliminar índice no agrupado en fecha_venta
+-- Eliminar índice compuesto en fecha_venta e id_cliente después de las pruebas
 DROP INDEX IDX_Venta_FechaVenta_ClienteId ON Venta;
 GO
+
 ```
 
 ---
