@@ -453,9 +453,13 @@ Se utilizó:
 ### Diagrama relacional
 ![diagrama_relacional](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/main/doc/diagrama_relacional.jpeg)
 
+---
+
 ### Diccionario de datos
 
 Acceso al documento [PDF](doc/diccionario_datos.pdf) del diccionario de datos.
+
+---
 
 ### Manejo de Permisos: Resultados
 
@@ -513,6 +517,8 @@ Resultado:
 ![permisos](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/54c6764f611a53bd614f1977c89003bc008df28b/script/Tema1_Permisos/mp2.png)
 
 Con estas dos pruebas podemos verificar que todos los usuarios tienen los roles y permisos correspondientes. 
+
+---
 
 ### Procedimientos Almacenados: Resultados
 
@@ -590,7 +596,11 @@ Resultado:
 
 Con estas dos pruebas podemos verificar que los procedimientos definidos funcionan correctamente.
 
+---
+
 ### Optimización de consultas a través de índices: Resultados
+
+---
 
 ### Manejo de transacciones: Resultados
 
