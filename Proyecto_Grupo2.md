@@ -430,6 +430,37 @@ GO
 
 ## CAPÍTULO III: METODOLOGÍA SEGUIDA
 
+#### a. Descripción del Trabajo Práctico
+
+1. **Análisis de Requerimientos:** Se identificaron las necesidades del negocio y las entidades principales (clientes, empleados, productos, ventas), definiendo restricciones como la unicidad del DNI, teléfono y email.
+
+2. **Diseño del Modelo de Datos:** Se diseñó un modelo conceptual en el que se definieron las relaciones y claves principales para representar las entidades y las reglas de integridad del negocio.
+
+3. **Creación de la Base de Datos en SQL Server:** Con el modelo conceptual, se crearon tablas, relaciones y restricciones para cumplir con los requerimientos de la empresa.
+
+4. **Asignación de Roles y Permisos:** Se establecieron roles específicos (Administrador, Empleado y Gerente) con permisos adecuados para proteger la integridad de los datos y controlar el acceso.
+
+5. **Procedimientos Almacenados:** Se desarrollaron procedimientos para mejorar el rendimiento y la seguridad, permitiendo ejecutar tareas comunes de forma eficiente y segura.
+
+6. **Pruebas y Verificación:** Se realizaron pruebas para validar el funcionamiento correcto, identificando y corrigiendo errores menores en procedimientos y restricciones.
+
+7. **Documentación:** Se registraron cada fase del desarrollo y los detalles técnicos, facilitando el mantenimiento futuro del sistema.
+
+#### b. Herramientas y Procedimientos
+
+1. **Herramientas:** Se usaron SQL Server, SQL Server Management Studio y Visual Studio 2022 para la implementación y gestión de la base de datos.
+
+2. **Procedimientos de Recolección de Información:**
+   - *Revisión Bibliográfica* y *Consulta en Internet* para asegurar buenas prácticas en diseño y seguridad.
+   - *Asesoramiento* con profesores para resolver dudas técnicas.
+
+3. **Dificultades Encontradas:**
+   - *Configuración de Permisos*: Ajustes para asegurar permisos correctos.
+   - *Optimización del Rendimiento*: Ajuste de procedimientos para mejorar la eficiencia.
+   - *Validación de Integridad*: Pruebas para verificar las restricciones sin afectar la inserción de datos.
+
+En conclusión, el proyecto se realizó con una metodología estructurada, superando desafíos mediante investigación y asesoría técnica, logrando una base de datos funcional y segura que responde a las necesidades del negocio de ventas.
+
 ## CAPÍTULO IV: DESARROLLO DEL TEMA / PRESENTACIÓN DE RESULTADOS 
 
 ### Diagrama relacional
@@ -441,6 +472,32 @@ GO
 Acceso al documento [PDF](doc/diccionario_datos.pdf) del diccionario de datos.
 
 ## CAPÍTULO V: CONCLUSIONES
+
+**CONCLUSIONES**
+
+El trabajo ha logrado cumplir los objetivos propuestos, diseñando e implementando una base de datos funcional y segura que satisface las necesidades de un negocio de ventas.
+
+**Objetivo General:**
+Se alcanzó el objetivo de desarrollar un sistema de base de datos que permite registrar ventas, gestionar clientes, empleados y productos, y asegurar la integridad de los datos. Esta solución facilita el acceso rápido y seguro a la información clave para una operación organizada y eficiente.
+
+**Objetivos Específicos:**
+
+1. **Modelo de datos**: Se diseñó un modelo que representa fielmente las entidades del negocio (clientes, empleados, productos, ventas), aplicando restricciones de unicidad y longitud para asegurar la integridad de los datos.
+   
+2. **Implementación en SQL Server**: La base de datos fue creada con las tablas, relaciones y restricciones necesarias, garantizando la precisión de la información.
+
+3. **Gestión de clientes y empleados**: Se permite registrar y administrar datos únicos de clientes y empleados, facilitando su organización.
+
+4. **Registro de ventas**: Se registra cada venta con detalles de cliente, empleado, productos y total de la compra, lo que permite un seguimiento claro de las transacciones.
+
+5. **Gestión de inventario**: La actualización automática del stock tras cada venta asegura un control preciso del inventario.
+
+6. **Seguridad mediante roles y permisos**: La asignación de permisos específicos para Administrador, Empleado y Gerente garantiza que cada usuario acceda solo a la información necesaria, protegiendo los datos del negocio.
+
+7. **Eficiencia con procedimientos almacenados**: Los procedimientos almacenados optimizan tareas recurrentes, mejoran el rendimiento y refuerzan la seguridad.
+
+**Evaluación Final:**
+La base de datos resultante es segura, eficiente y cumple con los requerimientos del negocio. Este sistema facilita la gestión de información y usuarios, fortaleciendo las operaciones y contribuyendo al éxito del negocio de ventas.
 
 ## BIBLIOGRAFÍA DE CONSULTA
 
