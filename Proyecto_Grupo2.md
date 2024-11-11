@@ -464,8 +464,8 @@ Para poder comprobar que se asignaron correctamente los roles y permisos a cada 
 A continuación dejamos cada prueba de validación con sus resultados:
 
 ```sql
--- Conectarse a la base de datos `base_sistema_ventas_prueba`
-USE base_sistema_ventas_prueba;
+-- Conectarse a la base de datos `base_sistema_ventas`
+USE base_sistema_ventas;
 GO
 
 -- Verificar los roles asignados a los usuarios
