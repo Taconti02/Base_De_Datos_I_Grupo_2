@@ -239,11 +239,8 @@ CREATE PROC PA_CargarPersona
    @id_persona INT,
    @nombre VARCHAR(50),
    @apellido VARCHAR(50),
-   @estado VARCHAR(11),
    @email VARCHAR(50),
-   @sexo VARCHAR(11),
    @telefono VARCHAR(30),
-   @cumpleaños DATE,
    @dni INT
 AS
 BEGIN
@@ -252,22 +249,16 @@ BEGIN
       @id_persona,
       @nombre,
       @apellido,
-      @estado,
       @email,
-      @sexo,
       @telefono,
-      @cumpleaños,
       @dni
    );
    SELECT 
       @id_persona = id_persona,
       @nombre = nombre,
       @apellido = apellido,
-      @estado = estado,
       @email = email,
-      @sexo = sexo,
       @telefono = telefono,
-      @cumpleaños = cumpleaños,
       @dni = dni
    FROM Persona;
    SELECT * FROM Persona;
