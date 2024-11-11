@@ -73,15 +73,14 @@ GO
 -- 5. Asignación de Permisos
 -- Asignación de permisos a nivel de tablas específicas
 GRANT CONTROL ON DATABASE::base_sistema_ventas TO Administrador;
+GRANT SELECT, INSERT, UPDATE ON Persona TO Administrador;
 
 GRANT SELECT, INSERT, UPDATE ON Venta TO Empleado;
 GRANT SELECT, INSERT, UPDATE ON Detalle_Venta TO Empleado;
 GRANT SELECT ON Cliente TO Empleado;
-GRANT SELECT ON Producto TO Empleado;
 
-GRANT SELECT ON Venta TO Gerente;
-GRANT SELECT ON Cliente TO Gerente;
-GRANT SELECT ON Persona TO Gerente;
+GRANT SELECT, INSERT, UPDATE ON Producto TO Gerente;
+GRANT SELECT ON Usuario TO Gerente;
 GO
 
 PRINT 'Roles y permisos asignados correctamente en base_sistema_ventas';
