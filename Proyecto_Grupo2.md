@@ -442,6 +442,7 @@ En la fase de pruebas, verificamos el correcto funcionamiento del sistema, ident
 #### b. Herramientas y Procedimientos
 
 1. **Herramientas:**
+
 Se utilizó:
 - *SQL Server Management Studio* para la implementación y gestión de la base de datos.
 - *GitHub* como repositorio de código y documentación, permitiendo el control de versiones y facilitando la colaboración entre los miembros del equipo.
