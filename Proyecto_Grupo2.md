@@ -459,7 +459,6 @@ GO
    - *Optimización del Rendimiento*: Ajuste de procedimientos para mejorar la eficiencia.
    - *Validación de Integridad*: Pruebas para verificar las restricciones sin afectar la inserción de datos.
 
-En conclusión, el proyecto se realizó con una metodología estructurada, superando desafíos mediante investigación y asesoría técnica, logrando una base de datos funcional y segura que responde a las necesidades del negocio de ventas.
 
 ## CAPÍTULO IV: DESARROLLO DEL TEMA / PRESENTACIÓN DE RESULTADOS 
 
