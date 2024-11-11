@@ -48,20 +48,19 @@ INSERT INTO Cliente (id_cliente)
 VALUES ((SELECT id_persona 
       FROM Persona 
       WHERE dni = 45678901));
+GO
 
 -- Una vez cargados los datos vamos a crear procedimientos almacenados para diferente funciones
 -- Procedimiento para registrar una nueva venta
-
 CREATE PROCEDURE RegistrarVenta
     @fecha_venta DATE,
     @total_venta FLOAT,
     @id_usuario INT,
     @id_tipo INT,
-    @id_cliente INT
+    @id_cliente INT,
+    @id_venta INT OUTPUT  -- Parámetro de salida para devolver el ID de la venta
 AS
 BEGIN
-    DECLARE @id_venta INT;
-
     BEGIN TRY
         BEGIN TRANSACTION;
 
@@ -73,7 +72,6 @@ BEGIN
         SET @id_venta = SCOPE_IDENTITY();
 
         COMMIT;
-        RETURN @id_venta; -- Retornar el ID de la nueva venta
     END TRY
     BEGIN CATCH
         ROLLBACK;
@@ -83,7 +81,6 @@ END;
 GO
 
 -- Procedimiento para registrar el detalle de una venta
-
 CREATE PROCEDURE RegistrarDetalleVenta
     @id_venta INT,
     @id_producto INT,
@@ -102,7 +99,6 @@ END;
 GO
 
 -- Función para obtener el total de ventas por cliente
-
 CREATE FUNCTION TotalVentasPorCliente (@id_cliente INT)
 RETURNS FLOAT
 AS
@@ -118,7 +114,6 @@ END;
 GO
 
 -- Procedimiento para actualizar el stock de un product
-
 CREATE PROCEDURE ActualizarStockProducto
     @id_producto INT,
     @cantidad INT
@@ -136,7 +131,6 @@ END;
 GO
 
 -- Procedimiento para obtener el detalle de una venta
-
 CREATE PROCEDURE ObtenerDetalleVenta
     @id_venta INT
 AS
