@@ -2,7 +2,54 @@
 USE base_sistema_ventas;
 GO
 
--- Vamos a crear procedimientos almacenados para diferente funciones
+-- 1. Insertar categorías (si no existen)
+IF NOT EXISTS (SELECT 1 FROM Categoria)
+BEGIN
+	INSERT INTO Categoria (id_categoria, descripcion) VALUES 
+	(1, 'Fundas y Protectores'), 
+	(2, 'Pop Socket'), 
+	(3, 'Auriculares y Altavoces');
+END
+
+-- 2. Insertar perfiles (si no existen)
+IF NOT EXISTS (SELECT 1 FROM Perfil)
+BEGIN
+	INSERT INTO Perfil (id_perfil, descripcion) VALUES 
+	(1, 'Administrador'), (2, 'Gerente'), (3, 'Empleado');
+END 
+
+-- 3. Insertar formas de pago (si no existen)
+IF NOT EXISTS (SELECT 1 FROM Pago)
+BEGIN
+	INSERT INTO Pago (id_tipo, descripcion) VALUES 
+	(1, 'Contado'), (2, 'Crédito'), (3, 'Débito');
+END 
+
+-- 4. Insertar productos
+INSERT INTO Producto (nombre_producto, precio, stock, id_categoria) VALUES 
+('Funda de Silicona para iPhone', 10.99, 20, 1),
+('Pop Socket Estilo Mandala', 3.99, 0, 2),
+('Auriculares Bluetooth Deportivos', 25.99, 15, 3);
+
+-- 5. Insertar personas
+INSERT INTO Persona (nombre, apellido, email, telefono, dni) VALUES 
+('Carlos', 'Rodríguez', 'carlos.rodriguez@example.com', '3794234505', 34567890),
+('María', 'López', 'maria.lopez@example.com', '3784876615', 45678901);
+
+-- 6. Insertar usuarios
+INSERT INTO Usuario (nombre_usuario, contraseña, id_usuario, id_perfil) VALUES 
+('Carlos', '12345678',
+     (SELECT id_persona 
+      FROM Persona 
+      WHERE dni = 34567890), 3);
+
+-- 7. Insertar clientes
+INSERT INTO Cliente (id_cliente)
+VALUES ((SELECT id_persona 
+      FROM Persona 
+      WHERE dni = 45678901));
+
+-- Una vez cargados los datos vamos a crear procedimientos almacenados para diferente funciones
 -- Procedimiento para registrar una nueva venta
 
 CREATE PROCEDURE RegistrarVenta
@@ -22,7 +69,7 @@ BEGIN
         INSERT INTO Venta (fecha_venta, total_venta, id_usuario, id_tipo, id_cliente)
         VALUES (@fecha_venta, @total_venta, @id_usuario, @id_tipo, @id_cliente);
 
-        -- Obtener el ID de la venta reci�n insertada
+        -- Obtener el ID de la venta recién insertada
         SET @id_venta = SCOPE_IDENTITY();
 
         COMMIT;
@@ -54,7 +101,7 @@ BEGIN
 END;
 GO
 
--- Funci�n para obtener el total de ventas por cliente
+-- Función para obtener el total de ventas por cliente
 
 CREATE FUNCTION TotalVentasPorCliente (@id_cliente INT)
 RETURNS FLOAT
@@ -105,4 +152,4 @@ BEGIN
 END;
 GO
 
--- Estos procedimientos nos ayudar�n a manejar m�s eficientemente el proceso de una venta
+-- Estos procedimientos nos ayudarán a manejar más eficientemente el proceso de una venta
