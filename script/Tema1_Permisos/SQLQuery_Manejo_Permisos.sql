@@ -16,9 +16,18 @@ VALUES
 -- 3. Insertar usuarios
 INSERT INTO Usuario (nombre_usuario, contraseña, id_usuario, id_perfil) 
 VALUES 
-('Juan', '12345678', 1, 1), 
-('Marta', '12345678', 2, 2), 
-('Ana', '12345678', 3, 3);
+('Juan', '12345678',
+     (SELECT id_persona 
+      FROM Persona 
+      WHERE dni = 27288012), 1),
+('Marta', '12345678',
+     (SELECT id_persona 
+      FROM Persona 
+      WHERE dni = 38583412), 2),
+('Ana', '12345678',
+     (SELECT id_persona 
+      FROM Persona 
+      WHERE dni = 23456721), 3);
 
 -- 4. Creación de Roles
 -- Verificar si los roles ya existen antes de crearlos
