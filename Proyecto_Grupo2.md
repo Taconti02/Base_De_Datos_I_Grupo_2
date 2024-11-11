@@ -432,7 +432,7 @@ GO
 
 #### a. Cómo se realizó el Trabajo Práctico
 
-Se llevó a cabo un análisis exhaustivo de requerimientos para identificar las necesidades específicas del negocio, enfocándose en entidades clave como clientes, empleados, productos y ventas, y estableciendo restricciones fundamentales, como la unicidad de datos en el DNI, teléfono y correo electrónico. 
+Se llevó a cabo un análisis de requerimientos para identificar las necesidades específicas del negocio, enfocándose en entidades clave como clientes, empleados, productos y ventas, y estableciendo restricciones fundamentales, como la unicidad de datos en el DNI, teléfono y correo electrónico. 
 Diseñamos un modelo conceptual de datos, definiendo las relaciones entre entidades y estableciendo reglas de integridad, y a partir de este modelo, creamos la base de datos en SQL Server, incorporando tablas, relaciones y restricciones alineadas con los requerimientos del negocio.
 
 A continuación, se establecieron roles de acceso (Administrador, Empleado y Gerente) con permisos diferenciados para proteger la integridad de los datos y gestionar el control de acceso. También desarrollamos procedimientos almacenados que optimizan el rendimiento y refuerzan la seguridad, automatizando tareas comunes para una ejecución eficiente. 
