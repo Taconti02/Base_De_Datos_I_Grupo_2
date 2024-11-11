@@ -430,41 +430,36 @@ GO
 
 ## CAPÍTULO III: METODOLOGÍA SEGUIDA
 
-#### a. Descripción del Trabajo Práctico
+#### a. Cómo se realizó el Trabajo Práctico
 
-1. **Análisis de Requerimientos:** Se identificaron las necesidades del negocio y las entidades principales (clientes, empleados, productos, ventas), definiendo restricciones como la unicidad del DNI, teléfono y email.
+Se llevó a cabo un análisis exhaustivo de requerimientos para identificar las necesidades específicas del negocio, enfocándose en entidades clave como clientes, empleados, productos y ventas, y estableciendo restricciones fundamentales, como la unicidad de datos en el DNI, teléfono y correo electrónico. 
+Diseñamos un modelo conceptual de datos, definiendo las relaciones entre entidades y estableciendo reglas de integridad, y a partir de este modelo, creamos la base de datos en SQL Server, incorporando tablas, relaciones y restricciones alineadas con los requerimientos del negocio.
 
-2. **Diseño del Modelo de Datos:** Se diseñó un modelo conceptual en el que se definieron las relaciones y claves principales para representar las entidades y las reglas de integridad del negocio.
+A continuación, se establecieron roles de acceso (Administrador, Empleado y Gerente) con permisos diferenciados para proteger la integridad de los datos y gestionar el control de acceso. También desarrollamos procedimientos almacenados que optimizan el rendimiento y refuerzan la seguridad, automatizando tareas comunes para una ejecución eficiente. 
 
-3. **Creación de la Base de Datos en SQL Server:** Con el modelo conceptual, se crearon tablas, relaciones y restricciones para cumplir con los requerimientos de la empresa.
-
-4. **Asignación de Roles y Permisos:** Se establecieron roles específicos (Administrador, Empleado y Gerente) con permisos adecuados para proteger la integridad de los datos y controlar el acceso.
-
-5. **Procedimientos Almacenados:** Se desarrollaron procedimientos para mejorar el rendimiento y la seguridad, permitiendo ejecutar tareas comunes de forma eficiente y segura.
-
-6. **Pruebas y Verificación:** Se realizaron pruebas para validar el funcionamiento correcto, identificando y corrigiendo errores menores en procedimientos y restricciones.
-
-7. **Documentación:** Se registraron cada fase del desarrollo y los detalles técnicos, facilitando el mantenimiento futuro del sistema.
+En la fase de pruebas, verificamos el correcto funcionamiento del sistema, identificando y corrigiendo errores en los procedimientos y restricciones. Al final, documentamos cada etapa del proceso y los detalles técnicos necesarios para facilitar el mantenimiento y futuras mejoras del sistema. 
 
 #### b. Herramientas y Procedimientos
 
-1. **Herramientas:** Se usaron SQL Server, SQL Server Management Studio y Visual Studio 2022 para la implementación y gestión de la base de datos.
+1. **Herramientas:**
+Se utilizó:
+- *SQL Server Management Studio* para la implementación y gestión de la base de datos.
+- *GitHub* como repositorio de código y documentación, permitiendo el control de versiones y facilitando la colaboración entre los miembros del equipo.
+- *WhatsApp* para la comunicación rápida, coordinando tareas y resolviendo dudas en tiempo real entre los miembros del equipo.
 
-2. **Procedimientos de Recolección de Información:**
-   - *Revisión Bibliográfica* y *Consulta en Internet* para asegurar buenas prácticas en diseño y seguridad.
-   - *Asesoramiento* con profesores para resolver dudas técnicas.
+3. **Procedimientos de Recolección de Información:**
+- *Revisión Bibliográfica* y *Consulta en Internet* para asegurar buenas prácticas en diseño y seguridad.
+- *Asesoramiento* con profesores para resolver dudas técnicas.
 
-3. **Dificultades Encontradas:**
-   - *Configuración de Permisos*: Ajustes para asegurar permisos correctos.
-   - *Optimización del Rendimiento*: Ajuste de procedimientos para mejorar la eficiencia.
-   - *Validación de Integridad*: Pruebas para verificar las restricciones sin afectar la inserción de datos.
-
+4. **Dificultades Encontradas:**
+- *Configuración de Permisos*: Ajustes para asegurar permisos correctos.
+- *Optimización del Rendimiento*: Ajuste de procedimientos para mejorar la eficiencia.
+- *Validación de Integridad*: Pruebas para verificar las restricciones sin afectar la inserción de datos.
 
 ## CAPÍTULO IV: DESARROLLO DEL TEMA / PRESENTACIÓN DE RESULTADOS 
 
 ### Diagrama relacional
 ![diagrama_relacional](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/main/doc/diagrama_relacional.jpeg)
-
 
 ### Diccionario de datos
 
