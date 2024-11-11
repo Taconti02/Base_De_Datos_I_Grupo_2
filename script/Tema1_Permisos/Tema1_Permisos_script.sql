@@ -9,7 +9,6 @@ INSERT INTO Persona (nombre, apellido, email, telefono, dni) VALUES
 ('Ana', 'Gómez', 'ana.gomez@example.com', '9876-543210', 23456721);
 
 -- Insertar usuarios
--- Nota: Aquí se asume que id_usuario es igual a id_persona, que es la clave primaria en la tabla Persona
 INSERT INTO Usuario (nombre_usuario, contraseña, id_usuario, id_perfil) VALUES 
 ('Juan', '12345678', 1, 1), ('Marta', '12345678', 2, 2), ('Ana', '12345678', 3, 3);
 
