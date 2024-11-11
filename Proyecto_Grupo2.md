@@ -266,6 +266,9 @@ END
 GO
 ```
 
+Existe una diferencia entre procedimientos almacenados y funciones almacenadas en SQL Server, esta se basa en su propósito, el tipo de valor que devuelven y las restricciones de uso en las consultas.
+
+
 ---
 
 ### Optimización de consultas a través de índices
