@@ -457,6 +457,59 @@ Se utilizó:
 
 Acceso al documento [PDF](doc/diccionario_datos.pdf) del diccionario de datos.
 
+### Manejo de Permisos: Resultados
+
+Para poder comprobar que se asignaron correctamente los roles y permisos a cada usuario realizaremos algunas pruebas de verificación. Primero, tenemos que ejecutar el Script [SQLQuery_Manejo_Permisos](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/b974b56e9f5de60854b75f5b68535f3730426a7e/script/Tema1_Permisos/SQLQuery_Manejo_Permisos.sql), el cual nos permitirá crear los roles y asignar los permisos de SELECT, INSERT o UPDATE sobre ciertas tablas.
+
+A continuación dejamos cada prueba de validación con sus resultados:
+
+```sql
+-- Conectarse a la base de datos `base_sistema_ventas_prueba`
+USE base_sistema_ventas_prueba;
+GO
+
+-- Verificar los roles asignados a los usuarios
+SELECT 
+    dp.name AS Usuario,
+    rp.name AS Rol
+FROM 
+    sys.database_principals dp
+JOIN 
+    sys.database_role_members drm ON dp.principal_id = drm.member_principal_id
+JOIN 
+    sys.database_principals rp ON drm.role_principal_id = rp.principal_id
+WHERE 
+    dp.type IN ('S', 'U')  
+    AND dp.name IN ('Juan', 'Marta', 'Ana');  
+```
+
+Resultado: (img)
+
+```sql
+-- Una vez verificado el rol de cada usuario podemos ver los permisos asignados
+-- Verificamos los permisos de cada usuario sobre los objetos
+
+SELECT 
+    rp.name AS Rol, 
+    o.name AS Objeto, 
+    p.permission_name AS Permiso
+FROM 
+    sys.database_role_members drm
+JOIN 
+    sys.database_principals rp ON drm.role_principal_id = rp.principal_id
+JOIN 
+    sys.database_permissions p ON rp.principal_id = p.grantee_principal_id
+JOIN 
+    sys.objects o ON p.major_id = o.object_id
+WHERE 
+    rp.name IN ('Administrador', 'Empleado', 'Gerente')
+    AND o.name IN ('Persona', 'Venta', 'Detalle_Venta', 'Cliente', 'Producto', 'Usuario');
+```
+
+Resultado: (img)
+
+Con estas dos pruebas podemos verificar que todos los usuarios tienen los roles y permisos correspondientes. 
+
 ## CAPÍTULO V: CONCLUSIONES
 
 **CONCLUSIONES**
