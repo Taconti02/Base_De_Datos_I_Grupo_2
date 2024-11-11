@@ -11,17 +11,16 @@ INSERT INTO Persona (nombre, apellido, email, telefono, dni)
 VALUES 
 ('Juan', 'Perez', 'juancitop12@gmail.com', '3794284911', 27288012), 
 ('Marta', 'Torres', 'martatorres0@gmail.com', '3795104298', 38583412), 
-('Ana', 'Gómez', 'ana.gomez@example.com', '9876-543210', 23456721);
+('Ana', 'GÃ³mez', 'ana.gomez@example.com', '9876-543210', 23456721);
 
 -- 3. Insertar usuarios
--- Nota: Aquí se asume que id_usuario es igual a id_persona, que es la clave primaria en la tabla Persona
-INSERT INTO Usuario (nombre_usuario, contraseña, id_usuario, id_perfil) 
+INSERT INTO Usuario (nombre_usuario, contraseÃ±a, id_usuario, id_perfil) 
 VALUES 
 ('Juan', '12345678', 1, 1), 
 ('Marta', '12345678', 2, 2), 
 ('Ana', '12345678', 3, 3);
 
--- 4. Creación de Roles
+-- 4. CreaciÃ³n de Roles
 -- Verificar si los roles ya existen antes de crearlos
 IF NOT EXISTS (SELECT 1 FROM sys.database_principals WHERE name = 'Administrador')
     CREATE ROLE Administrador;
@@ -33,7 +32,7 @@ IF NOT EXISTS (SELECT 1 FROM sys.database_principals WHERE name = 'Gerente')
     CREATE ROLE Gerente;
 GO
 
--- 5. Creación de Logins en `master` (si no existen)
+-- 5. CreaciÃ³n de Logins en `master` (si no existen)
 USE master;
 GO
 
@@ -63,7 +62,7 @@ IF NOT EXISTS (SELECT 1 FROM sys.database_principals WHERE name = 'Ana')
     CREATE USER Ana FOR LOGIN manager WITH DEFAULT_SCHEMA = dbo;
 GO
 
--- 7. Asignación de Roles a Usuarios
+-- 7. AsignaciÃ³n de Roles a Usuarios
 -- Se asegura que cada usuario exista en la base de datos antes de asignarle un rol
 IF EXISTS (SELECT 1 FROM sys.database_principals WHERE name = 'Juan')
     ALTER ROLE Administrador ADD MEMBER Juan;
@@ -75,8 +74,8 @@ IF EXISTS (SELECT 1 FROM sys.database_principals WHERE name = 'Ana')
     ALTER ROLE Gerente ADD MEMBER Ana;
 GO
 
--- 8. Asignación de Permisos
--- Asignación de permisos a nivel de tablas específicas dentro de la base de datos actual
+-- 8. AsignaciÃ³n de Permisos
+-- AsignaciÃ³n de permisos a nivel de tablas especÃ­ficas dentro de la base de datos actual
 GRANT CONTROL ON DATABASE::base_sistema_ventas_prueba TO Administrador;
 GRANT SELECT, INSERT, UPDATE ON Persona TO Administrador;
 
