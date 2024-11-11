@@ -483,7 +483,9 @@ WHERE
     AND dp.name IN ('Juan', 'Marta', 'Ana');  
 ```
 
-Resultado: (img)
+Resultado: 
+
+![roles](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/54c6764f611a53bd614f1977c89003bc008df28b/script/Tema1_Permisos/mp1.png)
 
 ```sql
 -- Una vez verificado el rol de cada usuario podemos ver los permisos asignados
@@ -506,7 +508,9 @@ WHERE
     AND o.name IN ('Persona', 'Venta', 'Detalle_Venta', 'Cliente', 'Producto', 'Usuario');
 ```
 
-Resultado: (img)
+Resultado: 
+
+![permisos](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/54c6764f611a53bd614f1977c89003bc008df28b/script/Tema1_Permisos/mp2.png)
 
 Con estas dos pruebas podemos verificar que todos los usuarios tienen los roles y permisos correspondientes. 
 
