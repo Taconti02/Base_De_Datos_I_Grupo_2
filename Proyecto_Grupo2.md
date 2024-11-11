@@ -547,13 +547,7 @@ EXEC RegistrarVenta -- Llamar al procedimiento Registrando la venta
 	@id_venta = @id_venta OUTPUT;
 
 SELECT * FROM Venta; -- Verificamos la inserción
-```
 
-Resultado: 
-
-(img)
-
-```sql
 -- Luego tenemos que obtener el id_venta de la venta recién registrada 
 SELECT @id_venta AS id_venta;
 
@@ -575,16 +569,7 @@ SELECT * FROM Detalle_Venta; -- Verificamos la inserción
 
 Resultado: 
 
-(img)
-
-```sql
--- Probamos la Función TotalVentasPorCliente
-SELECT dbo.TotalVentasPorCliente(@id_cliente) AS TotalVentas; 
-```
-
-Resultado: 
-
-(img)
+![venta](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/b011172e1b0dfb832257aa8c81ea9215f6868f09/script/Tema2_Procedimientos/pa1.png)
 
 ```sql
 -- Probar el Procedimiento ActualizarStockProducto
@@ -601,7 +586,9 @@ SELECT * FROM Producto;
 
 Resultado: 
 
-(img)
+![producto](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/b011172e1b0dfb832257aa8c81ea9215f6868f09/script/Tema2_Procedimientos/pa2.png)
+
+Con estas dos pruebas podemos verificar que los procedimientos definidos funcionan correctamente.
 
 ### Optimización de consultas a través de índices: Resultados
 
