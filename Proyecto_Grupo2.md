@@ -235,7 +235,7 @@ Los procedimientos del sistema se incluyen con el motor de base de datos y está
 
 ```sql
 /*** Este procedimiento almacenado nos permite cargar una nueva persona a la base de datos ***/
-CREATE PROC PA_CargarPersona
+CREATE PROCEDURE PA_CargarPersona
    @id_persona INT,
    @nombre VARCHAR(50),
    @apellido VARCHAR(50),
@@ -521,8 +521,91 @@ Para poder comprobar que los procedimientos almacenados pueden realizar operacio
 A continuación dejamos las pruebas de cada procedimiento con sus resultados:
 
 ```sql
+-- Conectarse a la base de datos `base_sistema_ventas`
+USE base_sistema_ventas;
+GO
 
+-- Probar el procedimiento RegistrarVenta
+DECLARE @id_venta INT;
+DECLARE @id_usuario INT;
+DECLARE @id_cliente INT;
+
+SELECT @id_usuario = id_persona -- Obtener id_usuario basado en el dni
+FROM Persona 
+WHERE dni = 34567890;
+
+SELECT @id_cliente = id_persona -- Obtener id_cliente basado en el dni
+FROM Persona 
+WHERE dni = 45678901;
+
+EXEC RegistrarVenta -- Llamar al procedimiento Registrando la venta
+    @fecha_venta = '2024-11-03', 
+    @total_venta = 25.97, 
+    @id_usuario = @id_usuario, 
+    @id_tipo = 1, 
+    @id_cliente = @id_cliente,
+	@id_venta = @id_venta OUTPUT;
+
+SELECT * FROM Venta; -- Verificamos la inserción
 ```
+
+Resultado: 
+
+(img)
+
+```sql
+-- Luego tenemos que obtener el id_venta de la venta recién registrada 
+SELECT @id_venta AS id_venta;
+
+-- Conseguido el id_venta, podemos probar el procedimiento RegistrarDetalleVenta
+EXEC RegistrarDetalleVenta
+    @id_venta = @id_venta,       
+    @id_producto = 1,    
+    @cantidad = 2,       
+    @subtotal = 21.98;  
+
+EXEC RegistrarDetalleVenta
+    @id_venta = @id_venta,       
+    @id_producto = 2,    
+    @cantidad = 1,       
+    @subtotal = 3.99;  
+
+SELECT * FROM Detalle_Venta; -- Verificamos la inserción
+```
+
+Resultado: 
+
+(img)
+
+```sql
+-- Probamos la Función TotalVentasPorCliente
+SELECT dbo.TotalVentasPorCliente(@id_cliente) AS TotalVentas; 
+```
+
+Resultado: 
+
+(img)
+
+```sql
+-- Probar el Procedimiento ActualizarStockProducto
+-- Verificamos cuánto es el stock actual
+SELECT * FROM Producto;
+
+EXEC ActualizarStockProducto 
+    @id_producto = 3,  
+    @cantidad = 1; -- Restamos 1 producto
+
+-- Verificamos si se actualizó
+SELECT * FROM Producto;
+```
+
+Resultado: 
+
+(img)
+
+### Optimización de consultas a través de índices: Resultados
+
+### Manejo de transacciones: Resultados
 
 ## CAPÍTULO V: CONCLUSIONES
 
