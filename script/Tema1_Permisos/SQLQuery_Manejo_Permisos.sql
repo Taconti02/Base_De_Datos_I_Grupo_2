@@ -1,5 +1,5 @@
--- Conectarse a la base de datos `base_sistema_ventas_prueba`
-USE base_sistema_ventas_prueba;
+-- Conectarse a la base de datos `base_sistema_ventas`
+USE base_sistema_ventas;
 GO
 
 -- 1. Insertar perfiles
@@ -47,8 +47,8 @@ IF NOT EXISTS (SELECT 1 FROM sys.server_principals WHERE name = 'manager')
     CREATE LOGIN manager WITH PASSWORD = 'manager_password';
 GO
 
--- 6. Crear usuarios en la base de datos `base_sistema_ventas_prueba`
-USE base_sistema_ventas_prueba;
+-- 6. Crear usuarios en la base de datos `base_sistema_ventas`
+USE base_sistema_ventas;
 GO
 
 -- Crear usuarios si no existen
@@ -76,7 +76,7 @@ GO
 
 -- 8. Asignación de Permisos
 -- Asignación de permisos a nivel de tablas específicas dentro de la base de datos actual
-GRANT CONTROL ON DATABASE::base_sistema_ventas_prueba TO Administrador;
+GRANT CONTROL ON DATABASE::base_sistema_ventas TO Administrador;
 GRANT SELECT, INSERT, UPDATE ON Persona TO Administrador;
 
 GRANT SELECT, INSERT, UPDATE ON Venta TO Empleado;
@@ -87,4 +87,4 @@ GRANT SELECT, INSERT, UPDATE ON Producto TO Gerente;
 GRANT SELECT ON Usuario TO Gerente;
 GO
 
-PRINT 'Roles y permisos asignados correctamente en base_sistema_ventas_prueba';
+PRINT 'Roles y permisos asignados correctamente en base_sistema_ventas';
