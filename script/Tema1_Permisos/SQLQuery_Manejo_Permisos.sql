@@ -2,10 +2,13 @@
 USE base_sistema_ventas;
 GO
 
--- 1. Insertar perfiles
-INSERT INTO Perfil (id_perfil, descripcion) 
-VALUES (1, 'Administrador'), (2, 'Gerente'), (3, 'Empleado');
-
+-- 1. Insertar perfiles (si no existen)
+IF NOT EXISTS (SELECT 1 FROM Perfil)
+BEGIN
+     INSERT INTO Perfil (id_perfil, descripcion) 
+     VALUES (1, 'Administrador'), (2, 'Gerente'), (3, 'Empleado');
+END
+     
 -- 2. Insertar personas
 INSERT INTO Persona (nombre, apellido, email, telefono, dni) 
 VALUES 
