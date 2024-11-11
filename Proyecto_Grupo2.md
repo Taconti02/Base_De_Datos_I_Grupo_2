@@ -450,3 +450,4 @@ Acceso al documento [PDF](doc/diccionario_datos.pdf) del diccionario de datos.
 4. Salvatierra, H. (2012). Optimización de consultas SQL en bases de datos relacionales. Editorial UOC
 5. Microsoft Ignite [En Línea]. Disponible en [Learn/SQL/Índices clúster y no clúster](https://learn.microsoft.com/es-es/sql/relational-databases/indexes/clustered-and-nonclustered-indexes-described?view=sql-server-ver16)
 6. Microsoft Ignite [En Línea]. Disponible en [Learn/SQL/Transacciones (Transact-SQL)](https://learn.microsoft.com/es-es/sql/t-sql/language-elements/transactions-transact-sql?view=sql-server-ver16)
+7. Gómez Fuentes, M. del C. Bases de datos, pp. 135-140 [En Línea]. Universidad Autónoma Metropolitana, Unidad Cuajimalpa.
