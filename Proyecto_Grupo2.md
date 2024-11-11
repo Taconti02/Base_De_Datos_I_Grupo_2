@@ -514,6 +514,16 @@ Resultado:
 
 Con estas dos pruebas podemos verificar que todos los usuarios tienen los roles y permisos correspondientes. 
 
+### Procedimientos Almacenados: Resultados
+
+Para poder comprobar que los procedimientos almacenados pueden realizar operaciones de inserción, actualización y obtención de datos vamos a tratar de llamarlos dentro del entorno. Primero, tenemos que ejecutar el Script [SQLQuery_Procedimientos_Almacenados](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/c579682592167690616ab304171483088f5dffbd/script/Tema2_Procedimientos/SQLQuery_Procedimientos_Almacenados.sql), que se encargará crear los procedimientos que nos permitirán a registrar una nueva venta.
+
+A continuación dejamos las pruebas de cada procedimiento con sus resultados:
+
+```sql
+
+```
+
 ## CAPÍTULO V: CONCLUSIONES
 
 **CONCLUSIONES**
