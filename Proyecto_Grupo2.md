@@ -525,6 +525,26 @@ Resultado:
 
 Con estas dos pruebas podemos verificar que todos los usuarios tienen los roles y permisos correspondientes. 
 
+Ahora realizaremos algunas pruebas de acceso simulando la ejecución de operaciones por parte de los usuarios.
+Nos conectaremos con un usuario administrador usando login admin.
+
+![login]()
+
+
+
+```sql
+-- Un administrador debería:
+-- Poder realizar una consulta SELECT en la tabla Persona
+-- Poder realizar un INSERT directo en la tabla Persona
+-- Poder modificar un registro existente en la tabla Persona
+-- Poder eliminar un registro en la tabla Persona
+
+
+
+```
+
+![insert]()
+
 ---
 
 ### Procedimientos Almacenados: Resultados
