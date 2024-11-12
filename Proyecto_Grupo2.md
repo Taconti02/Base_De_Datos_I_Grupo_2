@@ -491,19 +491,19 @@ SELECT * FROM Persona WHERE nombre = 'Carlos' AND apellido = 'López';
 
 -- INSERT usando el procedimiento almacenado sp_InsertarPersona
 EXEC sp_InsertarPersona 
-    @nombre = 'Ana', 
-    @apellido = 'Gomez', 
-    @email = 'anagomez@gmail.com', 
-    @telefono = '3797654321', 
-    @dni = 98765432;
+    @nombre = 'Claudia', 
+    @apellido = 'Jiménez', 
+    @email = 'claudia.jimenez@example.com', 
+    @telefono = '3792345678', 
+    @dni = 23456789;
 
 -- Verificar que el registro se haya insertado
-SELECT * FROM Persona WHERE nombre = 'Ana' AND apellido = 'Gomez';
+SELECT * FROM Persona WHERE nombre = 'Claudia' AND apellido = 'Jiménez';
 ```
 
 Resultado: 
 
-![insert](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/0864591312f425fa5c4635499eb4933c0ad711bd/script/Tema1_Permisos/mp4.png)
+![insert]()
 
 Como este usuario tiene permisos de administrador, puede realizar INSERT directamente en la tabla Persona y también a través del procedimiento almacenado sp_InsertarPersona.
 
