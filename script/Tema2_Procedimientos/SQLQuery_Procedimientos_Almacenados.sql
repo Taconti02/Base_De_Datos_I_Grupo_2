@@ -1,5 +1,5 @@
 -- Conectarse a la base de datos `base_sistema_ventas`
-USE base_sistema_ventas;
+USE base_sistema_ventas4;
 GO
 
 -- 1. Insertar categorías (si no existen)
@@ -34,7 +34,7 @@ INSERT INTO Producto (nombre_producto, precio, stock, id_categoria) VALUES
 -- 5. Insertar personas
 INSERT INTO Persona (nombre, apellido, email, telefono, dni) VALUES 
 ('Carlos', 'Rodríguez', 'carlos.rodriguez@example.com', '3794234505', 34567890),
-('María', 'López', 'maria.lopez@example.com', '3784876615', 45678901);
+('Silvia', 'Mendoza', 'silvia.mendoza@example.com', '3792345671', 34567801);
 
 -- 6. Insertar usuarios
 INSERT INTO Usuario (nombre_usuario, contraseña, id_usuario, id_perfil) VALUES 
@@ -47,7 +47,7 @@ INSERT INTO Usuario (nombre_usuario, contraseña, id_usuario, id_perfil) VALUES
 INSERT INTO Cliente (id_cliente)
 VALUES ((SELECT id_persona 
       FROM Persona 
-      WHERE dni = 45678901));
+      WHERE dni = 34567801));
 GO
 
 -- Una vez cargados los datos vamos a crear procedimientos almacenados para diferente funciones
