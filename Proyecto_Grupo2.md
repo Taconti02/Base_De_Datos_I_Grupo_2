@@ -503,7 +503,7 @@ SELECT * FROM Persona WHERE nombre = 'Claudia' AND apellido = 'Jiménez';
 
 Resultado: 
 
-![insert]()
+![insert](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/a229128f216b5903d2cabc588186c4fa1b4ed16e/script/Tema1_Permisos/mp4.png)
 
 Como este usuario tiene permisos de administrador, puede realizar INSERT directamente en la tabla Persona y también a través del procedimiento almacenado sp_InsertarPersona.
 
