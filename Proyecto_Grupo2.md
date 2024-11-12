@@ -440,12 +440,12 @@ JOIN
     sys.database_principals rp ON drm.role_principal_id = rp.principal_id
 WHERE 
     dp.type IN ('S', 'U')  
-    AND dp.name IN ('Juan', 'Marta'); 
+    AND dp.name IN ('Juan', 'Marta', 'Ana'); 
 ```
 
 Resultado: 
 
-![roles](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/f9b2237a138627579f4f4cd156a337418587f977/script/Tema1_Permisos/mp1.png)
+![roles]()
 
 ```sql
 -- Una vez verificado el rol de cada usuario podemos ver los permisos asignados
@@ -464,13 +464,13 @@ JOIN
 JOIN 
     sys.objects o ON p.major_id = o.object_id
 WHERE 
-    rp.name IN ('Administrador', 'Empleado')
+    rp.name IN ('Administrador', 'EmpleadoLectura', 'Empleado')
     AND o.name IN ('Persona', 'Venta', 'Detalle_Venta', 'Cliente', 'Producto', 'Usuario');
 ```
 
 Resultado: 
 
-![permisos](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/d86dcdbc887b941e5d6150cfe352b0675ab34e5d/script/Tema1_Permisos/mp2.png)
+![permisos]()
 
 Con estas dos pruebas podemos verificar que todos los usuarios tienen los roles y permisos correspondientes. 
 
@@ -543,6 +543,18 @@ Resultado:
 ![insert](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/cf01f12f4cf70bc04e97966a3ff33dd3cc3d75b8/script/Tema1_Permisos/mp7.png)
 
 Como este usuario tiene permiso de ejecución sobre el procedimiento sp_InsertarPersona, la ejecución se realizó correctamente y se registró una nueva persona.
+
+Por ultimo vamos a hacer una comparación de comportamiento entre un usuario con permiso de lectura (EmpleadoLectura) y otro que no (Empleado).
+
+Empleado Lectura:
+
+![select](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/66013dd8107edb76be9263f63e22e1135e70019c/script/Tema1_Permisos/mp8.png)
+
+Empleado:
+
+![select](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/66013dd8107edb76be9263f63e22e1135e70019c/script/Tema1_Permisos/mp9.png)
+
+Con esta prueba podemos verificar cómo el acceso controlado mediante roles limita la visibilidad de datos a los usuarios autorizados.
 
 ---
 
