@@ -610,6 +610,7 @@ Con estas dos pruebas podemos verificar que los procedimientos definidos funcion
 **Parte 2: Realizar una Búsqueda por Periodo y Registrar el Plan de Ejecución**
 Sin índices, ejecutaremos una consulta y registraremos el plan de ejecución y los tiempos de respuesta.
 
+(script/Tema3_Optimización de Consultas a Través de Índices/1OCTI.png)
 ---
 
 ### Manejo de transacciones: Resultados
