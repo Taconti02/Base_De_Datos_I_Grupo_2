@@ -629,7 +629,7 @@ Con estas dos pruebas podemos verificar que los procedimientos definidos funcion
 
 **Parte 2: Realizar una Búsqueda por Periodo y Registrar el Plan de Ejecución**
 Sin índices, ejecutaremos una consulta y registraremos el plan de ejecución y los tiempos de respuesta.
-
+![OCTI1](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/main/script/Tema3_Optimizaci%C3%B3n%20de%20Consultas%20a%20Trav%C3%A9s%20de%20%C3%8Dndices/1OCTI.png)
 *OCTI1*
 *OCTI2*
 
