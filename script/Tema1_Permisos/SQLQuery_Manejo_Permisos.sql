@@ -13,7 +13,8 @@ END
 INSERT INTO Persona (nombre, apellido, email, telefono, dni) 
 VALUES 
 ('Juan', 'Perez', 'juancitop12@gmail.com', '3794284911', 27288012), 
-('Marta', 'Torres', 'martatorres0@gmail.com', '3795104298', 38583412);
+('Marta', 'Torres', 'martatorres0@gmail.com', '3795104298', 38583412),
+('Ana', 'Gómez', 'anagomez@gmail.com', '1234567890', 23456721);
 
 -- 1.2 Insertar usuarios
 INSERT INTO Usuario (nombre_usuario, contraseña, id_usuario, id_perfil) 
@@ -25,7 +26,11 @@ VALUES
 ('Marta', '12345678',
      (SELECT id_persona 
       FROM Persona 
-      WHERE dni = 38583412), 2);
+      WHERE dni = 38583412), 2),
+('Ana', '12345678',
+     (SELECT id_persona 
+      FROM Persona 
+      WHERE dni = 23456721), 2);
 
 -- 2. Creación de Roles
 -- Verificar si los roles ya existen antes de crearlos
@@ -34,34 +39,46 @@ IF NOT EXISTS (SELECT 1 FROM sys.database_principals WHERE name = 'Administrador
 
 IF NOT EXISTS (SELECT 1 FROM sys.database_principals WHERE name = 'Empleado')
     CREATE ROLE Empleado;
+
+IF NOT EXISTS (SELECT 1 FROM sys.database_principals WHERE name = 'EmpleadoLectura')
+    CREATE ROLE EmpleadoLectura;
 GO
 
--- 2.1 Creación de Logins en `master` (si no existen)
+-- 3. Creación de Logins en `master` (si no existen)
 IF NOT EXISTS (SELECT 1 FROM sys.server_principals WHERE name = 'admin')
     CREATE LOGIN admin WITH PASSWORD = 'admin_password';
 
 IF NOT EXISTS (SELECT 1 FROM sys.server_principals WHERE name = 'employee')
     CREATE LOGIN employee WITH PASSWORD = 'employee_password';
+
+IF NOT EXISTS (SELECT 1 FROM sys.server_principals WHERE name = 'employee2')
+    CREATE LOGIN employee2 WITH PASSWORD = 'employee_password';
 GO
 
--- 2.2 Crear usuarios en la base de datos `base_sistema_ventas`
+-- 3.1 Crear usuarios en la base de datos `base_sistema_ventas`
 IF NOT EXISTS (SELECT 1 FROM sys.database_principals WHERE name = 'Juan')
     CREATE USER Juan FOR LOGIN admin WITH DEFAULT_SCHEMA = dbo;
 
 IF NOT EXISTS (SELECT 1 FROM sys.database_principals WHERE name = 'Marta')
     CREATE USER Marta FOR LOGIN employee WITH DEFAULT_SCHEMA = dbo;
+
+IF NOT EXISTS (SELECT 1 FROM sys.database_principals WHERE name = 'Ana')
+    CREATE USER Ana FOR LOGIN employee2 WITH DEFAULT_SCHEMA = dbo;
 GO
 
--- 2.3 Asignación de Roles a Usuarios
+-- 4. Asignación de Roles a Usuarios
 -- Se asegura que cada usuario exista en la base de datos antes de asignarle un rol
 IF EXISTS (SELECT 1 FROM sys.database_principals WHERE name = 'Juan')
     ALTER ROLE Administrador ADD MEMBER Juan;
 
 IF EXISTS (SELECT 1 FROM sys.database_principals WHERE name = 'Marta')
     ALTER ROLE Empleado ADD MEMBER Marta;
+
+IF EXISTS (SELECT 1 FROM sys.database_principals WHERE name = 'Ana')
+    ALTER ROLE EmpleadoLectura ADD MEMBER Ana;
 GO
 
--- 3. Asignación de Permisos
+-- 5. Asignación de Permisos
 -- Permisos de administrador a Juan
 GRANT CONTROL ON DATABASE::base_sistema_ventas TO Administrador;
 GRANT SELECT, INSERT, UPDATE ON Persona TO Administrador;
@@ -85,7 +102,7 @@ CLOSE tabla_cursor;
 DEALLOCATE tabla_cursor;
 GO
 
--- 4. Crear procedimiento almacenado para INSERT en la tabla Persona
+-- 6. Crear procedimiento almacenado para INSERT en la tabla Persona
 CREATE PROCEDURE sp_InsertarPersona
     @nombre NVARCHAR(50),
     @apellido NVARCHAR(50),
@@ -99,7 +116,7 @@ BEGIN
 END;
 GO
 
--- 5. Dar permiso de ejecución del procedimiento a Marta
+-- 7. Dar permiso de ejecución del procedimiento a Marta
 GRANT EXECUTE ON sp_InsertarPersona TO Marta;
 GO
 
