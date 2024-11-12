@@ -60,12 +60,7 @@ Desarrollar una base de datos para un negocio de venta de productos que permita 
 
 **Conceptos Básicos**
 
-Para garantizar la seguridad y la integridad de la base de datos, es crucial manejar adecuadamente los permisos a nivel de usuarios. Los permisos determinan qué acciones pueden realizar los usuarios dentro de la base de datos. A continuación, se describen los conceptos fundamentales:
-
-**Roles de Usuarios**
-   - Administrador: Tiene todos los permisos y puede gestionar otros usuarios.
-   - Empleado: Permisos para registrar y consultar ventas.
-   - Gerente: Permisos para consultar sus datos personales y el historial de compras.
+Para garantizar la seguridad y la integridad de la base de datos, es crucial manejar adecuadamente los permisos a nivel de usuarios. Los permisos determinan qué acciones pueden realizar los usuarios dentro de la base de datos. 
 
 **Tipos de Permisos**
    - SELECT: Permite leer datos.
@@ -154,51 +149,6 @@ GRANT ALL PRIVILEGES ON SCHEMA public TO ADMIN;
 
 Capacitar a los usuarios sobre la importancia de la seguridad y las mejores prácticas, fomentando una cultura de seguridad dentro de la organización.
 
-Ejemplo Completo de Implementación:
-
-```sql
--- Crear roles
-CREATE ROLE Administrador;
-CREATE ROLE Empleado;
-CREATE ROLE Gerente;
-
--- Crear usuarios y asignar roles
-CREATE USER admin WITH PASSWORD = 'adminpassword';
-CREATE USER employee WITH PASSWORD = 'employeepassword';
-CREATE USER manager WITH PASSWORD = 'managerpassword';
-
--- Asignar roles a los usuarios
-ALTER ROLE Administrador ADD MEMBER admin;
-ALTER ROLE Empleado ADD MEMBER employee;
-ALTER ROLE Gerente ADD MEMBER manager;
-
--- Permisos para el rol de Administrador
-GRANT ALL PRIVILEGES ON SCHEMA public TO Administrador;
-
--- Permisos para el rol de Empleado
-GRANT SELECT, INSERT, UPDATE ON TABLE ventas TO Empleado;
-GRANT SELECT ON TABLE clientes TO Empleado;
-
--- Permisos para el rol de Gerente
-GRANT SELECT ON TABLE clientes TO Gerente;
-
--- Buenas prácticas adicionales
--- Crear roles predefinidos
-CREATE ROLE READONLY;
-CREATE ROLE READWRITE;
-CREATE ROLE ADMIN;
-
--- Asignar permisos a roles predefinidos
-GRANT SELECT ON ALL TABLES IN SCHEMA public TO READONLY;
-GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO READWRITE;
-GRANT ALL PRIVILEGES ON SCHEMA public TO ADMIN;
-
--- Asignar roles predefinidos a usuarios existentes
-ALTER ROLE READONLY ADD MEMBER manager;
-ALTER ROLE READWRITE ADD MEMBER employee;
-ALTER ROLE ADMIN ADD MEMBER admin;
-```
-
 --- 
 
 ### Procedimientos y funciones almacenadas
@@ -266,8 +216,11 @@ END
 GO
 ```
 
-Existe una diferencia entre procedimientos almacenados y funciones almacenadas en SQL Server, esta se basa en su propósito, el tipo de valor que devuelven y las restricciones de uso en las consultas.
+Existe una diferencia entre procedimientos almacenados y funciones almacenadas en SQL Server. Esta se basa en su propósito, el tipo de valor que devuelven y las restricciones de uso en las consultas.
 
+En el caso de los *Procedimientos Almacenados*, generalmente se utilizan para ejecutar operaciones complejas o secuencias de instrucciones, como modificar datos, insertar, actualizar o eliminar registros. No tienen una restricción en cuanto a la cantidad de valores que pueden devolver, pudiendo retornar múltiples conjuntos de resultados (usando SELECT) o valores de salida (con parámetros OUT). También pueden devolver valores de éxito o error (mediante RETURN). No pueden ser invocados directamente en consultas, sino que son llamados mediante EXEC.
+
+En cambio, las *Funciones Almacenadas* suelen ser utilizadas en consultas para transformar datos o realizar operaciones que devuelven un único valor específico. Este valor es el resultado de la función y debe especificarse mediante un tipo de dato en la definición de la función. A diferencia de los procedimientos, las funciones sí pueden ser utilizadas en instrucciones SELECT o en una cláusula WHERE, permitiendo la transformación directa de datos en consultas. Generalmente, no deberían modificar los datos de la base.
 
 ---
 
