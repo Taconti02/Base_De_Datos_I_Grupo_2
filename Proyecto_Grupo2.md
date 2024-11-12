@@ -629,26 +629,39 @@ Con estas dos pruebas podemos verificar que los procedimientos definidos funcion
 
 **Parte 2: Realizar una Búsqueda por Periodo y Registrar el Plan de Ejecución**
 Sin índices, ejecutaremos una consulta y registraremos el plan de ejecución y los tiempos de respuesta.
-![OCTI1](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/main/script/Tema3_Optimizaci%C3%B3n%20de%20Consultas%20a%20Trav%C3%A9s%20de%20%C3%8Dndices/1OCTI.png)
-*OCTI1*
-*OCTI2*
+![1OCTI](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/main/script/Tema3_Optimizaci%C3%B3n%20de%20Consultas%20a%20Trav%C3%A9s%20de%20%C3%8Dndices/1OCTI.png)
+
+*1OCTI*
+
+![2OCTI](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/main/script/Tema3_Optimizaci%C3%B3n%20de%20Consultas%20a%20Trav%C3%A9s%20de%20%C3%8Dndices/2OCTI.png)
+
+*2OCTI*
 
 Parte 3: Definir un Índice Agrupado sobre la Columna Fecha y Repetir la Consulta
 Eliminamos el índice agrupado existente (el de la clave primaria) y creamos un nuevo índice agrupado en fecha_venta.
 
-*OCTI3*
+![3OCTI](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/main/script/Tema3_Optimizaci%C3%B3n%20de%20Consultas%20a%20Trav%C3%A9s%20de%20%C3%8Dndices/3OCTI.png)
+
+*3OCTI*
 
 Parte 4: Borrar el Índice Creado
 Eliminamos el índice agrupado.
 
-*OCTI4*
+![4OCTI](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/main/script/Tema3_Optimizaci%C3%B3n%20de%20Consultas%20a%20Trav%C3%A9s%20de%20%C3%8Dndices/4OCTI.png)
+
+*4OCTI*
 
 
 Parte 5: Crear Otro Índice Agrupado Incluyendo las Columnas Seleccionadas y Repetir la Consulta
 Creamos un índice agrupado que incluya columnas adicionales (fecha_venta y id_cliente) y repetimos la consulta.
 
-*OCTI5*
-*OCTI6*
+![5OCTI](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/main/script/Tema3_Optimizaci%C3%B3n%20de%20Consultas%20a%20Trav%C3%A9s%20de%20%C3%8Dndices/5OCTI.png)
+
+*5OCTI*
+
+![6OCTI](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/main/script/Tema3_Optimizaci%C3%B3n%20de%20Consultas%20a%20Trav%C3%A9s%20de%20%C3%8Dndices/6OCTI.png)
+
+*6OCTI*
 
 
 Conclusiones:
