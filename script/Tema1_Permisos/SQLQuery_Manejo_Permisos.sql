@@ -74,8 +74,23 @@ GO
 GRANT CONTROL ON DATABASE::base_sistema_ventas TO Administrador;
 GRANT SELECT, INSERT, UPDATE ON Persona TO Administrador;
 
--- Permisos de solo lectura a Marta
-GRANT SELECT ON ALL TABLES IN SCHEMA dbo TO Empleado;
+-- Permisos de solo lectura a Marta en todas las tablas del esquema dbo
+DECLARE @tabla NVARCHAR(128);
+DECLARE tabla_cursor CURSOR FOR 
+    SELECT name FROM sys.tables WHERE schema_id = SCHEMA_ID('dbo');
+
+OPEN tabla_cursor;
+FETCH NEXT FROM tabla_cursor INTO @tabla;
+
+WHILE @@FETCH_STATUS = 0
+BEGIN
+    DECLARE @sql NVARCHAR(MAX) = N'GRANT SELECT ON dbo.' + QUOTENAME(@tabla) + ' TO Empleado;';
+    EXEC sp_executesql @sql;
+    FETCH NEXT FROM tabla_cursor INTO @tabla;
+END;
+
+CLOSE tabla_cursor;
+DEALLOCATE tabla_cursor;
 GO
 
 -- 9. Crear procedimiento almacenado para INSERT en la tabla Persona
