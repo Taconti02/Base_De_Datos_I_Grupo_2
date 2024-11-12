@@ -61,7 +61,7 @@ IF EXISTS (SELECT 1 FROM sys.database_principals WHERE name = 'Marta')
     ALTER ROLE Empleado ADD MEMBER Marta;
 GO
 
--- 2.4 Asignación de Permisos
+-- 3. Asignación de Permisos
 -- Permisos de administrador a Juan
 GRANT CONTROL ON DATABASE::base_sistema_ventas TO Administrador;
 GRANT SELECT, INSERT, UPDATE ON Persona TO Administrador;
@@ -85,7 +85,7 @@ CLOSE tabla_cursor;
 DEALLOCATE tabla_cursor;
 GO
 
--- 3. Crear procedimiento almacenado para INSERT en la tabla Persona
+-- 4. Crear procedimiento almacenado para INSERT en la tabla Persona
 CREATE PROCEDURE sp_InsertarPersona
     @nombre NVARCHAR(50),
     @apellido NVARCHAR(50),
@@ -99,7 +99,7 @@ BEGIN
 END;
 GO
 
--- 4. Dar permiso de ejecución del procedimiento a Marta
+-- 5. Dar permiso de ejecución del procedimiento a Marta
 GRANT EXECUTE ON sp_InsertarPersona TO Marta;
 GO
 
