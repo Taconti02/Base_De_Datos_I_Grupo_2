@@ -160,4 +160,41 @@ BEGIN
 END;
 GO
 
+-- Función para calcular el total de ventas de un cliente específico
+CREATE FUNCTION TotalVentasPorCliente(
+    @id_cliente INT,
+    @mes INT,
+    @anio INT
+)
+RETURNS FLOAT
+AS
+BEGIN
+    DECLARE @totalVentas FLOAT;
+    
+    SELECT @totalVentas = SUM(total_venta)
+    FROM Venta
+    WHERE id_cliente = @id_cliente 
+      AND MONTH(fecha_venta) = @mes 
+      AND YEAR(fecha_venta) = @anio;
+    
+    RETURN ISNULL(@totalVentas, 0);
+END;
+GO
+
+-- Función para verificar el stock disponible de un producto
+CREATE FUNCTION VerificarStockProducto(
+    @id_producto INT
+)
+RETURNS INT
+AS
+BEGIN
+    DECLARE @stockDisponible INT;
+    
+    SELECT @stockDisponible = stock
+    FROM Producto
+    WHERE id_producto = @id_producto;
+    
+    RETURN ISNULL(@stockDisponible, 0);
+END;
+GO
 -- Estos procedimientos nos ayudarán a manejar más eficientemente el proceso de una venta
