@@ -560,7 +560,7 @@ Con esta prueba podemos verificar cómo el acceso controlado mediante roles limi
 
 ### Procedimientos Almacenados: Resultados
 
-Para poder comprobar que los procedimientos almacenados pueden realizar operaciones de inserción, actualización y obtención de datos vamos a tratar de llamarlos dentro del entorno. Primero, tenemos que ejecutar el Script [SQLQuery_Procedimientos_Almacenados](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/f53a6053152d8932d427e888a6b281616ae4b6b2/script/Tema2_Procedimientos/SQLQuery_Procedimientos_Almacenados.sql), que se encargará crear los procedimientos que nos permitirán a registrar una nueva venta.
+Para poder comprobar que los procedimientos almacenados pueden realizar operaciones de inserción, actualización y obtención de datos vamos a tratar de llamarlos dentro del entorno. Primero, tenemos que ejecutar el Script [SQLQuery_Procedimientos_Almacenados](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/0c804e061448e2fb853827d970ab794c1eff5577/script/Tema2_Procedimientos/SQLQuery_Procedimientos_Almacenados.sql), que se encargará crear los procedimientos que nos permitirán a registrar una nueva venta.
 
 A continuación dejamos las pruebas de cada procedimiento con sus resultados:
 
@@ -709,6 +709,28 @@ GO
 ```
 
 ![contar](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/acafc1322956ec9bc921b18a7b1b3b9a06d24105/script/Tema2_Procedimientos/pa4.png)
+
+```sql
+-- Conectarse a la base de datos `base_sistema_ventas`
+USE base_sistema_ventas;
+GO
+
+-- Prueba de TotalVentasPorCliente para un cliente en un mes y año específicos
+DECLARE @total FLOAT;
+SET @total = dbo.TotalVentasPorCliente(2, 11, 2024);
+
+-- Mostrar el resultado
+PRINT 'Total de ventas para el cliente con ID 1 en Noviembre 2024: ' + CAST(@total AS VARCHAR(50));
+
+-- Prueba de VerificarStockProducto para un producto específico
+DECLARE @stock INT;
+SET @stock = dbo.VerificarStockProducto(1);
+
+-- Mostrar el resultado
+PRINT 'Stock disponible para el producto con ID 1: ' + CAST(@stock AS VARCHAR(50));
+```
+
+![contar](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/04e2ceee7b70700b1b83bfd936bca13dfbc945f1/script/Tema2_Procedimientos/pa6.png)
 
 Con estas pruebas podemos verificar que los procedimientos y funciones definidas funcionan correctamente.
 
