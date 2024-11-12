@@ -693,9 +693,9 @@ Se produjo el error y se verifica que el manejo de transacciones es efectivo.
 
 
 Conclusión en base a pruebas realizadas:
--Transacción Consistente:
+- Transacción Consistente:
 En el primer script, si todas las operaciones son exitosas, los cambios se aplican a la base de datos. Si ocurre algún error en cualquier paso, la transacción se revierte, asegurando que ningún cambio parcial se aplique. Esto demuestra la efectividad de las transacciones para mantener la integridad de los datos.
--Transacción con Error Intencional:
+- Transacción con Error Intencional:
 En el segundo script, al provocar un error intencional después del primer INSERT, la transacción se revierte completamente. Esto asegura que no se realice ningún cambio en la base de datos, manteniéndola consistente y sin alteraciones parciales. Esta prueba confirma que el manejo de errores dentro de una transacción es efectivo para mantener la consistencia y atomicidad de los datos.
 
 
