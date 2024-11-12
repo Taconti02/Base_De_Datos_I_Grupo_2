@@ -866,8 +866,6 @@ Eliminamos el índice agrupado existente (el de la clave primaria) y creamos un 
 
 ![3OCTI](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/main/script/Tema3_Optimizaci%C3%B3n%20de%20Consultas%20a%20Trav%C3%A9s%20de%20%C3%8Dndices/3OCTI.png)
 
-
-
 **Parte 4: Borrar el Índice Creado**
 
 Eliminamos el índice agrupado.
@@ -875,7 +873,6 @@ Eliminamos el índice agrupado.
 *Indice agrupado eliminado:*
 
 ![4OCTI](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/main/script/Tema3_Optimizaci%C3%B3n%20de%20Consultas%20a%20Trav%C3%A9s%20de%20%C3%8Dndices/4OCTI.png)
-
 
 **Parte 5: Crear Otro Índice Agrupado Incluyendo las Columnas Seleccionadas y Repetir la Consulta**
 
@@ -889,7 +886,6 @@ Creamos un índice agrupado que incluya columnas adicionales (fecha_venta y id_c
 
 ![6OCTI](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/main/script/Tema3_Optimizaci%C3%B3n%20de%20Consultas%20a%20Trav%C3%A9s%20de%20%C3%8Dndices/6OCTI.png)
 
-
 **Conclusiones:**
 
 - Consulta sin Índice:
@@ -898,6 +894,8 @@ La consulta sin ningún índice requiere un escaneo completo de la tabla (table 
 Al aplicar un índice agrupado en la columna fecha_venta, se observa una mejora significativa en el tiempo de respuesta en 7 segundos. El motor de la base de datos puede acceder rápidamente a las filas que coinciden con el rango de fechas utilizando el índice, reduciendo así la cantidad de datos que necesita escanear.
 - Consulta con Índice Agrupado en fecha_venta e id_cliente:
 Al aplicar un índice agrupado en fecha_venta e id_cliente, la mejora en el tiempo de respuesta es 7 segundos al igual que índice agrupado en la columna fecha_venta.
+
+---
 
 ### Manejo de transacciones y transacciones anidadas: Resultados
 
@@ -927,8 +925,6 @@ En el primer script, si todas las operaciones son exitosas, los cambios se aplic
 En el segundo script, al provocar un error intencional después del primer INSERT, la transacción se revierte completamente. Esto asegura que no se realice ningún cambio en la base de datos, manteniéndola consistente y sin alteraciones parciales. Esta prueba confirma que el manejo de errores dentro de una transacción es efectivo para mantener la consistencia y atomicidad de los datos.
 
 ## CAPÍTULO V: CONCLUSIONES
-
-**CONCLUSIONES**
 
 El trabajo ha logrado cumplir los objetivos propuestos, diseñando e implementando una base de datos funcional y segura que satisface las necesidades de un negocio de ventas.
 
