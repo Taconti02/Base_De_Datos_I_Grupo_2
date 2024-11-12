@@ -1,4 +1,4 @@
-´´´sql
+
 USE base_sistema_ventas;
 GO
 -- Parte 1: Carga Masiva de Datos
