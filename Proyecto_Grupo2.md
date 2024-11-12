@@ -630,6 +630,7 @@ Con estas dos pruebas podemos verificar que los procedimientos definidos funcion
 **Parte 2: Realizar una Búsqueda por Periodo y Registrar el Plan de Ejecución**
 
 Sin índices, ejecutaremos una consulta y registraremos el plan de ejecución y los tiempos de respuesta.
+
 ![1OCTI](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/main/script/Tema3_Optimizaci%C3%B3n%20de%20Consultas%20a%20Trav%C3%A9s%20de%20%C3%8Dndices/1OCTI.png)
 
 *1OCTI*
@@ -670,11 +671,11 @@ Creamos un índice agrupado que incluya columnas adicionales (fecha_venta y id_c
 
 **Conclusiones:**
 
--Consulta sin Índice:
+- Consulta sin Índice:
 La consulta sin ningún índice requiere un escaneo completo de la tabla (table scan), lo que resulta en un tiempo de respuesta elevado de 8 segundos y un uso intensivo de I/O y CPU. Esto se debe a la necesidad de leer cada fila de la tabla para encontrar las filas que coinciden con el rango de fechas.
--Consulta con Índice Agrupado en fecha_venta:
+- Consulta con Índice Agrupado en fecha_venta:
 Al aplicar un índice agrupado en la columna fecha_venta, se observa una mejora significativa en el tiempo de respuesta en 7 segundos. El motor de la base de datos puede acceder rápidamente a las filas que coinciden con el rango de fechas utilizando el índice, reduciendo así la cantidad de datos que necesita escanear.
--Consulta con Índice Agrupado en fecha_venta e id_cliente:
+- Consulta con Índice Agrupado en fecha_venta e id_cliente:
 Al aplicar un índice agrupado en fecha_venta e id_cliente, la mejora en el tiempo de respuesta es 7 segundos al igual que índice agrupado en la columna fecha_venta.
 
 
