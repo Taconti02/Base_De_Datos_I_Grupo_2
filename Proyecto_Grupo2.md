@@ -680,12 +680,16 @@ Al aplicar un índice agrupado en fecha_venta e id_cliente, la mejora en el tiem
 Parte 1: Transacción Consistente
 Funciono correctamente la transacción consistente
 
-MTTA1
+![MTTA1]
+(https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/main/script/Tema4_%20%20Manejo%20de%20transacciones%20y%20transacciones%20anidadas/MTTA1.png)
+*MTTA1*
 
 Parte 2: Provocar un Error y Verificar la Consistencia
 Se produjo el error y se verifica que el manejo de transacciones es efectivo.
 
-MTTA2
+![MTTA2]
+(https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/main/script/Tema4_%20%20Manejo%20de%20transacciones%20y%20transacciones%20anidadas/MTTA2.png)
+*MTTA2*
 
 
 Conclusión en base a pruebas realizadas:
