@@ -37,11 +37,11 @@ VALUES
 IF NOT EXISTS (SELECT 1 FROM sys.database_principals WHERE name = 'Administrador')
     CREATE ROLE Administrador;
 
-IF NOT EXISTS (SELECT 1 FROM sys.database_principals WHERE name = 'Empleado')
-    CREATE ROLE Empleado;
-
 IF NOT EXISTS (SELECT 1 FROM sys.database_principals WHERE name = 'EmpleadoLectura')
     CREATE ROLE EmpleadoLectura;
+
+IF NOT EXISTS (SELECT 1 FROM sys.database_principals WHERE name = 'Empleado')
+    CREATE ROLE Empleado;
 GO
 
 -- 3. Creación de Logins en `master` (si no existen)
@@ -72,10 +72,10 @@ IF EXISTS (SELECT 1 FROM sys.database_principals WHERE name = 'Juan')
     ALTER ROLE Administrador ADD MEMBER Juan;
 
 IF EXISTS (SELECT 1 FROM sys.database_principals WHERE name = 'Marta')
-    ALTER ROLE Empleado ADD MEMBER Marta;
+    ALTER ROLE EmpleadoLectura ADD MEMBER Marta;
 
 IF EXISTS (SELECT 1 FROM sys.database_principals WHERE name = 'Ana')
-    ALTER ROLE EmpleadoLectura ADD MEMBER Ana;
+    ALTER ROLE Empleado ADD MEMBER Ana;
 GO
 
 -- 5. Asignación de Permisos
@@ -93,7 +93,7 @@ FETCH NEXT FROM tabla_cursor INTO @tabla;
 
 WHILE @@FETCH_STATUS = 0
 BEGIN
-    DECLARE @sql NVARCHAR(MAX) = N'GRANT SELECT ON dbo.' + QUOTENAME(@tabla) + ' TO Empleado;';
+    DECLARE @sql NVARCHAR(MAX) = N'GRANT SELECT ON dbo.' + QUOTENAME(@tabla) + ' TO EmpleadoLectura;';
     EXEC sp_executesql @sql;
     FETCH NEXT FROM tabla_cursor INTO @tabla;
 END;
