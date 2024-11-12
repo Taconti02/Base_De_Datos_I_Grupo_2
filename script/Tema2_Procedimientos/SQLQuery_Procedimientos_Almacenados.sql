@@ -98,18 +98,35 @@ BEGIN
 END;
 GO
 
--- Función para obtener el total de ventas por cliente
-CREATE FUNCTION TotalVentasPorCliente (@id_cliente INT)
-RETURNS FLOAT
+-- Procedimiento para eliminar una venta
+CREATE PROCEDURE EliminarVenta
+    @id_venta INT
 AS
 BEGIN
-    DECLARE @total FLOAT;
+    BEGIN TRY
+        -- Eliminar primero los detalles de venta asociados
+        DELETE FROM Detalle_Venta WHERE id_venta = @id_venta;
+        
+        -- Luego, eliminar la venta
+        DELETE FROM Venta WHERE id_venta = @id_venta;
+    END TRY
+    BEGIN CATCH
+        THROW;
+    END CATCH
+END;
+GO
 
-    SELECT @total = SUM(total_venta)
-    FROM Venta
-    WHERE id_cliente = @id_cliente;
-
-    RETURN ISNULL(@total, 0);
+-- Procedimiento para eliminar un detalle de venta
+CREATE PROCEDURE EliminarDetalleVenta
+    @id_detalle INT
+AS
+BEGIN
+    BEGIN TRY
+        DELETE FROM Detalle_Venta WHERE id_detalle = @id_detalle;
+    END TRY
+    BEGIN CATCH
+        THROW;
+    END CATCH
 END;
 GO
 
@@ -130,19 +147,16 @@ BEGIN
 END;
 GO
 
--- Procedimiento para obtener el detalle de una venta
-CREATE PROCEDURE ObtenerDetalleVenta
-    @id_venta INT
+-- Función para contar el total de ventas en un mes específico
+CREATE FUNCTION TotalVentasPorMes(@mes INT, @anio INT)
+RETURNS INT
 AS
 BEGIN
-    SELECT 
-        DV.id_detalle,
-        P.nombre_producto,
-        DV.cantidad,
-        DV.subtotal
-    FROM Detalle_Venta DV
-    JOIN Producto P ON DV.id_producto = P.id_producto
-    WHERE DV.id_venta = @id_venta;
+    DECLARE @totalVentas INT;
+    SELECT @totalVentas = COUNT(*)
+    FROM Venta
+    WHERE MONTH(fecha_venta) = @mes AND YEAR(fecha_venta) = @anio;
+    RETURN ISNULL(@totalVentas, 0);
 END;
 GO
 
