@@ -81,9 +81,6 @@ IF EXISTS (SELECT 1 FROM sys.database_principals WHERE name = 'Juan')
 
 IF EXISTS (SELECT 1 FROM sys.database_principals WHERE name = 'Marta')
     ALTER ROLE Empleado ADD MEMBER Marta;
-
-IF EXISTS (SELECT 1 FROM sys.database_principals WHERE name = 'Ana')
-    ALTER ROLE Gerente ADD MEMBER Ana;
 GO
 
 -- 8. Asignación de Permisos
@@ -91,12 +88,8 @@ GO
 GRANT CONTROL ON DATABASE::base_sistema_ventas TO Administrador;
 GRANT SELECT, INSERT, UPDATE ON Persona TO Administrador;
 
-GRANT SELECT, INSERT, UPDATE ON Venta TO Empleado;
-GRANT SELECT, INSERT, UPDATE ON Detalle_Venta TO Empleado;
-GRANT SELECT ON Cliente TO Empleado;
 
-GRANT SELECT, INSERT, UPDATE ON Producto TO Gerente;
-GRANT SELECT ON Usuario TO Gerente;
+GRANT SELECT ON Persona TO Empleado;
 GO
 
 PRINT 'Roles y permisos asignados correctamente en base_sistema_ventas';
