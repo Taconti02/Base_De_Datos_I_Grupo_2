@@ -153,7 +153,7 @@ Capacitar a los usuarios sobre la importancia de la seguridad y las mejores prá
 
 ### Procedimientos y funciones almacenadas
 Un procedimiento almacenado en SQL Server es un conjunto de una o más instrucciones Transact-SQL que se almacena asociado a una base de datos. Similar a las estructuras en otros lenguajes de programación, los procedimientos almacenados pueden aceptar parámetros de entrada, devolver múltiples valores en forma de parámetros de salida, realizar operaciones en la base de datos (incluyendo llamadas a otros procedimientos) y retornar un valor de estado que indica al programa si la operación se completó con éxito o si ocurrieron errores, junto con sus causas.
-Algunas de las **ventajas** de usar estos procesimientos son:
+Algunas de las **ventajas** de usar estos procedimientos son:
 
 - **Tráfico de red reducido entre el cliente y el servidor:**
 Los comandos se ejecutan en un único lote de código, reduciendo el tráfico de red entre el servidor y el cliente porque solo se envía la solicitud para ejecutar el procedimiento, en lugar de enviar cada comando por separado, haciéndolo más eficiente.
