@@ -304,10 +304,6 @@ GO
 
 ```
 
-
-
-
-
 ---
 ### Manejo de transacciones y transacciones anidadas
 Una transacción es un conjunto de operaciones que se tratan como una única unidad, es decir, todas las modificaciones realizadas dentro de la transacción deben confirmarse en conjunto o revertirse por completo en caso de error. Para iniciar una transacción se utiliza la sentencia BEGIN TRAN. Si alguna operación dentro de la transacción falla, es necesario revertir todos los cambios realizados con ROLLBACK TRAN, devolviendo la base de datos a su estado inicial. Si la transacción tiene éxito, se finaliza con COMMIT TRAN y los cambios realizados se guardan permanentemente en la base de datos. Además, los puntos de recuperación, o SavePoints, permiten hacer reversiones parciales, lo que significa que puedes deshacer solo hasta un punto específico de la transacción sin tener que revertirla por completo. También se pueden manejar las transacciones tomadas como excepciones mediante un TRY o un CATCH, así como con un operador condicional IF.
@@ -608,7 +604,6 @@ Eliminamos el índice agrupado.
 
 *4OCTI*
 
-
 **Parte 5: Crear Otro Índice Agrupado Incluyendo las Columnas Seleccionadas y Repetir la Consulta**
 
 Creamos un índice agrupado que incluya columnas adicionales (fecha_venta y id_cliente) y repetimos la consulta.
@@ -621,7 +616,6 @@ Creamos un índice agrupado que incluya columnas adicionales (fecha_venta y id_c
 
 *6OCTI*
 
-
 **Conclusiones:**
 
 - Consulta sin Índice:
@@ -631,10 +625,7 @@ Al aplicar un índice agrupado en la columna fecha_venta, se observa una mejora 
 - Consulta con Índice Agrupado en fecha_venta e id_cliente:
 Al aplicar un índice agrupado en fecha_venta e id_cliente, la mejora en el tiempo de respuesta es 7 segundos al igual que índice agrupado en la columna fecha_venta.
 
-
-
 ### Manejo de transacciones y transacciones anidadas: Resultados
-
 
 **Parte 1: Transacción Consistente**
 
@@ -652,16 +643,12 @@ Se produjo el error y se verifica que el manejo de transacciones es efectivo.
 
 *MTTA2*
 
-
 **Conclusión en base a pruebas realizadas:**
 
 - Transacción Consistente:
 En el primer script, si todas las operaciones son exitosas, los cambios se aplican a la base de datos. Si ocurre algún error en cualquier paso, la transacción se revierte, asegurando que ningún cambio parcial se aplique. Esto demuestra la efectividad de las transacciones para mantener la integridad de los datos.
 - Transacción con Error Intencional:
 En el segundo script, al provocar un error intencional después del primer INSERT, la transacción se revierte completamente. Esto asegura que no se realice ningún cambio en la base de datos, manteniéndola consistente y sin alteraciones parciales. Esta prueba confirma que el manejo de errores dentro de una transacción es efectivo para mantener la consistencia y atomicidad de los datos.
-
-
-
 
 ## CAPÍTULO V: CONCLUSIONES
 
@@ -693,7 +680,7 @@ La base de datos resultante es segura, eficiente y cumple con los requerimientos
 
 ## BIBLIOGRAFÍA DE CONSULTA
 
- 1. Base de Datos 2.2.3 Entidad relación [En Línea] Disponible en [eLibro UNNE](https://elibro.net/es/ereader/unne/121283?page=52 "eLibro UNNE") Pulido Romero, E. Escobar Domínguez 
+1. Base de Datos 2.2.3 Entidad relación [En Línea] Disponible en [eLibro UNNE](https://elibro.net/es/ereader/unne/121283?page=52 "eLibro UNNE") Pulido Romero, E. Escobar Domínguez 
 2. Microsoft Ignite [En Línea] Disponible en [Learn/SQL/Procedimientos Almacenados](https://learn.microsoft.com/es-es/sql/relational-databases/stored-procedures/stored-procedures-database-engine?view=sql-server-ver16)
 3. Cañizares, L. (2008). Bases de datos. Teoría y diseño (2ª ed.). Alfaomega.
 4. Salvatierra, H. (2012). Optimización de consultas SQL en bases de datos relacionales. Editorial UOC
