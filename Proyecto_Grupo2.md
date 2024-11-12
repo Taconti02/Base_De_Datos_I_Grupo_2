@@ -419,7 +419,7 @@ Acceso al documento [PDF](doc/diccionario_datos.pdf) del diccionario de datos.
 
 ### Manejo de Permisos: Resultados
 
-Para poder comprobar que se asignaron correctamente los roles y permisos a cada usuario realizaremos algunas pruebas de verificación. Primero, tenemos que ejecutar el Script [SQLQuery_Manejo_Permisos](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/b974b56e9f5de60854b75f5b68535f3730426a7e/script/Tema1_Permisos/SQLQuery_Manejo_Permisos.sql), el cual nos permitirá crear los roles y asignar los permisos de SELECT, INSERT o UPDATE sobre ciertas tablas.
+Para poder comprobar que se asignaron correctamente los roles y permisos a cada usuario realizaremos algunas pruebas de verificación. Primero, tenemos que ejecutar el Script [SQLQuery_Manejo_Permisos](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/75053d1cd45373eb53c712e67a7acfc8df1db9c7/script/Tema1_Permisos/SQLQuery_Manejo_Permisos.sql), el cual nos permitirá crear los roles y asignar los permisos de SELECT, INSERT o UPDATE sobre ciertas tablas.
 
 A continuación dejamos cada prueba de validación con sus resultados:
 
@@ -560,7 +560,7 @@ Con esta prueba podemos verificar cómo el acceso controlado mediante roles limi
 
 ### Procedimientos Almacenados: Resultados
 
-Para poder comprobar que los procedimientos almacenados pueden realizar operaciones de inserción, actualización y obtención de datos vamos a tratar de llamarlos dentro del entorno. Primero, tenemos que ejecutar el Script [SQLQuery_Procedimientos_Almacenados](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/c579682592167690616ab304171483088f5dffbd/script/Tema2_Procedimientos/SQLQuery_Procedimientos_Almacenados.sql), que se encargará crear los procedimientos que nos permitirán a registrar una nueva venta.
+Para poder comprobar que los procedimientos almacenados pueden realizar operaciones de inserción, actualización y obtención de datos vamos a tratar de llamarlos dentro del entorno. Primero, tenemos que ejecutar el Script [SQLQuery_Procedimientos_Almacenados](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/75053d1cd45373eb53c712e67a7acfc8df1db9c7/script/Tema2_Procedimientos/SQLQuery_Procedimientos_Almacenados.sql), que se encargará crear los procedimientos que nos permitirán a registrar una nueva venta.
 
 A continuación dejamos las pruebas de cada procedimiento con sus resultados:
 
