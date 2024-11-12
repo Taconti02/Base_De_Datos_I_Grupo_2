@@ -630,41 +630,47 @@ Con estas dos pruebas podemos verificar que los procedimientos definidos funcion
 
 Sin índices, ejecutaremos una consulta y registraremos el plan de ejecución y los tiempos de respuesta.
 
+*Plan de ejecución:*
+
 ![1OCTI](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/main/script/Tema3_Optimizaci%C3%B3n%20de%20Consultas%20a%20Trav%C3%A9s%20de%20%C3%8Dndices/1OCTI.png)
 
-*1OCTI*
+
+*Resultado de tiempo de respuesta:*
 
 ![2OCTI](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/main/script/Tema3_Optimizaci%C3%B3n%20de%20Consultas%20a%20Trav%C3%A9s%20de%20%C3%8Dndices/2OCTI.png)
 
-*2OCTI*
 
 **Parte 3: Definir un Índice Agrupado sobre la Columna Fecha y Repetir la Consulta**
 
 Eliminamos el índice agrupado existente (el de la clave primaria) y creamos un nuevo índice agrupado en fecha_venta.
 
+*Resultado de tiempo de respuesta:*
+
 ![3OCTI](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/main/script/Tema3_Optimizaci%C3%B3n%20de%20Consultas%20a%20Trav%C3%A9s%20de%20%C3%8Dndices/3OCTI.png)
 
-*3OCTI*
+
 
 **Parte 4: Borrar el Índice Creado**
 
 Eliminamos el índice agrupado.
 
+*Indice agrupado eliminado:*
+
 ![4OCTI](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/main/script/Tema3_Optimizaci%C3%B3n%20de%20Consultas%20a%20Trav%C3%A9s%20de%20%C3%8Dndices/4OCTI.png)
 
-*4OCTI*
 
 **Parte 5: Crear Otro Índice Agrupado Incluyendo las Columnas Seleccionadas y Repetir la Consulta**
 
 Creamos un índice agrupado que incluya columnas adicionales (fecha_venta y id_cliente) y repetimos la consulta.
 
+*Plan de ejecución:*
+
 ![5OCTI](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/main/script/Tema3_Optimizaci%C3%B3n%20de%20Consultas%20a%20Trav%C3%A9s%20de%20%C3%8Dndices/5OCTI.png)
 
-*5OCTI*
+*Resultado de tiempo de respuesta:*
 
 ![6OCTI](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/main/script/Tema3_Optimizaci%C3%B3n%20de%20Consultas%20a%20Trav%C3%A9s%20de%20%C3%8Dndices/6OCTI.png)
 
-*6OCTI*
 
 **Conclusiones:**
 
@@ -681,17 +687,19 @@ Al aplicar un índice agrupado en fecha_venta e id_cliente, la mejora en el tiem
 
 Funciono correctamente la transacción consistente.
 
+*Transaccion consistente exitosa:*
+
 ![MTTA1](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/main/script/Tema4_%20%20Manejo%20de%20transacciones%20y%20transacciones%20anidadas/MTTA1.png)
 
-*MTTA1*
 
 **Parte 2: Provocar un Error y Verificar la Consistencia**
 
 Se produjo el error y se verifica que el manejo de transacciones es efectivo.
 
+*Error mostrando manejo de transacciones exitoso:*
+
 ![MTTA2](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/main/script/Tema4_%20%20Manejo%20de%20transacciones%20y%20transacciones%20anidadas/MTTA2.png)
 
-*MTTA2*
 
 **Conclusión en base a pruebas realizadas:**
 
