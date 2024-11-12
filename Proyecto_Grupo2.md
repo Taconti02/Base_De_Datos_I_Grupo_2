@@ -560,7 +560,7 @@ Con esta prueba podemos verificar cómo el acceso controlado mediante roles limi
 
 ### Procedimientos Almacenados: Resultados
 
-Para poder comprobar que los procedimientos almacenados pueden realizar operaciones de inserción, actualización y obtención de datos vamos a tratar de llamarlos dentro del entorno. Primero, tenemos que ejecutar el Script [SQLQuery_Procedimientos_Almacenados](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/75053d1cd45373eb53c712e67a7acfc8df1db9c7/script/Tema2_Procedimientos/SQLQuery_Procedimientos_Almacenados.sql), que se encargará crear los procedimientos que nos permitirán a registrar una nueva venta.
+Para poder comprobar que los procedimientos almacenados pueden realizar operaciones de inserción, actualización y obtención de datos vamos a tratar de llamarlos dentro del entorno. Primero, tenemos que ejecutar el Script [SQLQuery_Procedimientos_Almacenados](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/f53a6053152d8932d427e888a6b281616ae4b6b2/script/Tema2_Procedimientos/SQLQuery_Procedimientos_Almacenados.sql), que se encargará crear los procedimientos que nos permitirán a registrar una nueva venta.
 
 A continuación dejamos las pruebas de cada procedimiento con sus resultados:
 
@@ -570,6 +570,7 @@ USE base_sistema_ventas;
 GO
 
 -- Probar el procedimiento RegistrarVenta
+-- Declarar variables para almacenar el resultado de la venta, el usuario y el cliente
 DECLARE @id_venta INT;
 DECLARE @id_usuario INT;
 DECLARE @id_cliente INT;
@@ -580,27 +581,30 @@ WHERE dni = 34567890;
 
 SELECT @id_cliente = id_persona -- Obtener id_cliente basado en el dni
 FROM Persona 
-WHERE dni = 45678901;
+WHERE dni = 34567801;
 
-EXEC RegistrarVenta -- Llamar al procedimiento Registrando la venta
+-- Llamar al procedimiento para registrar una venta
+EXEC RegistrarVenta 
     @fecha_venta = '2024-11-03', 
     @total_venta = 25.97, 
     @id_usuario = @id_usuario, 
     @id_tipo = 1, 
     @id_cliente = @id_cliente,
-	@id_venta = @id_venta OUTPUT;
+    @id_venta = @id_venta OUTPUT;
 
-SELECT * FROM Venta; -- Verificamos la inserción
+-- Validar la inserción en la tabla Venta
+SELECT * FROM Venta 
 
--- Luego tenemos que obtener el id_venta de la venta recién registrada 
+-- Comprobar el ID de la venta generada
 SELECT @id_venta AS id_venta;
 
--- Conseguido el id_venta, podemos probar el procedimiento RegistrarDetalleVenta
-EXEC RegistrarDetalleVenta
-    @id_venta = @id_venta,       
-    @id_producto = 1,    
-    @cantidad = 2,       
-    @subtotal = 21.98;  
+-- Con el mismo id_venta, podemos probar el procedimiento RegistrarDetalleVenta
+-- Llamar al procedimiento para registrar un detalle de venta
+EXEC RegistrarDetalleVenta 
+    @id_venta = @id_venta, 
+    @id_producto = 1, 
+    @cantidad = 2, 
+    @subtotal = 21.98;
 
 EXEC RegistrarDetalleVenta
     @id_venta = @id_venta,       
@@ -608,7 +612,9 @@ EXEC RegistrarDetalleVenta
     @cantidad = 1,       
     @subtotal = 3.99;  
 
-SELECT * FROM Detalle_Venta; -- Verificamos la inserción
+-- Validar la inserción en la tabla Detalle_Venta
+SELECT * FROM Detalle_Venta WHERE id_venta = @id_venta;
+GO
 ```
 
 Resultado: 
@@ -616,6 +622,10 @@ Resultado:
 ![venta](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/b011172e1b0dfb832257aa8c81ea9215f6868f09/script/Tema2_Procedimientos/pa1.png)
 
 ```sql
+-- Conectarse a la base de datos `base_sistema_ventas`
+USE base_sistema_ventas;
+GO
+
 -- Probar el Procedimiento ActualizarStockProducto
 -- Verificamos cuánto es el stock actual
 SELECT * FROM Producto;
@@ -632,7 +642,175 @@ Resultado:
 
 ![producto](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/b011172e1b0dfb832257aa8c81ea9215f6868f09/script/Tema2_Procedimientos/pa2.png)
 
-Con estas dos pruebas podemos verificar que los procedimientos definidos funcionan correctamente.
+```sql
+-- Conectarse a la base de datos `base_sistema_ventas`
+USE base_sistema_ventas;
+GO
+
+-- Probar el Procedimiento EliminarVenta y EliminarDetalleVenta
+-- Verificar el estado actual
+SELECT * FROM Venta WHERE id_venta = 1
+SELECT * FROM Detalle_Venta WHERE id_venta = 1
+
+EXEC EliminarVenta @id_venta = 1;
+EXEC EliminarDetalleVenta @id_detalle = 1
+
+-- Validar que la venta y sus detalles han sido eliminados
+SELECT * FROM Venta WHERE id_venta = 1 -- Debe retornar sin filas
+SELECT * FROM Detalle_Venta WHERE id_venta = 1 -- Debe retornar sin filas
+GO
+```
+
+Resultado: 
+
+![eliminar](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/62b84268ff92bfd6b9afc0d1b6093805b3ae6e12/script/Tema2_Procedimientos/pa3.png)
+
+```sql
+-- Conectarse a la base de datos `base_sistema_ventas`
+USE base_sistema_ventas;
+GO
+
+-- Probar la Función TotalVentasPorMes
+-- Registrar varias Ventas para realizar esta prueba
+DECLARE @id_venta INT;
+
+EXEC RegistrarVenta 
+    @fecha_venta = '2024-10-24', 
+    @total_venta = 11.30, 
+    @id_usuario = 1, 
+    @id_tipo = 1, 
+    @id_cliente = 2,
+    @id_venta = @id_venta OUTPUT;
+
+EXEC RegistrarVenta 
+    @fecha_venta = '2024-11-15', 
+    @total_venta = 23.75, 
+    @id_usuario = 1, 
+    @id_tipo = 1, 
+    @id_cliente = 2,
+    @id_venta = @id_venta OUTPUT;
+
+EXEC RegistrarVenta 
+    @fecha_venta = '2024-11-27', 
+    @total_venta = 87.20, 
+    @id_usuario = 1, 
+    @id_tipo = 1, 
+    @id_cliente = 2,
+    @id_venta = @id_venta OUTPUT;
+
+SELECT * FROM Venta
+
+-- Vamos a contar las ventas en el mes de noviembre de 2024
+SELECT dbo.TotalVentasPorMes(11, 2024) AS total_ventas_noviembre;
+
+-- Validar el valor obtenido
+SELECT COUNT(*) AS total_ventas FROM Venta WHERE MONTH(fecha_venta) = 11 AND YEAR(fecha_venta) = 2024;
+GO
+```
+
+![contar](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/acafc1322956ec9bc921b18a7b1b3b9a06d24105/script/Tema2_Procedimientos/pa4.png)
+
+Con estas pruebas podemos verificar que los procedimientos y funciones definidas funcionan correctamente.
+
+Ahora vamos a comparar la eficiencia entre de las operaciones directas y el uso de procedimientos y funciones.
+
+```sql
+-- Conectarse a la base de datos
+USE base_sistema_ventas;
+GO
+
+-- Asegurarnos de que el cliente con id_cliente = 1 existe
+IF NOT EXISTS (SELECT 1 FROM Cliente WHERE id_cliente = 1)
+BEGIN
+    INSERT INTO Cliente (id_cliente) VALUES (1);  -- Aseguramos que el cliente 1 esté en la tabla
+END
+GO
+
+-- Declarar variables para medir el tiempo
+DECLARE @InicioDirecto DATETIME, @FinDirecto DATETIME;
+DECLARE @InicioProcedimiento DATETIME, @FinProcedimiento DATETIME;
+DECLARE @id_venta INT;
+
+---------------------------------
+-- Insertar datos directamente --
+---------------------------------
+SET @InicioDirecto = GETDATE();
+
+-- Realizar 100 inserts directos en Venta y Detalle_Venta
+DECLARE @i INT = 1;
+WHILE @i <= 100
+BEGIN
+    -- Declaramos la variable para total_venta
+    DECLARE @totalVenta FLOAT;
+    SET @totalVenta = 100.0 + CONVERT(FLOAT, @i);
+
+    -- Insertar directamente en Venta
+    INSERT INTO Venta (fecha_venta, total_venta, id_usuario, id_tipo, id_cliente)
+    VALUES ('2024-11-12', @totalVenta, 1, 1, 1);
+
+    -- Obtener el ID de la venta recién insertada
+    SET @id_venta = SCOPE_IDENTITY();
+
+    -- Insertar directamente en Detalle_Venta
+    INSERT INTO Detalle_Venta (id_venta, id_producto, cantidad, subtotal)
+    VALUES (@id_venta, 1, 2, 50.0), (@id_venta, 2, 1, 25.0);
+
+    SET @i = @i + 1;
+END
+
+SET @FinDirecto = GETDATE();
+
+------------------------------------------------------
+-- Insertar datos usando procedimientos almacenados --
+------------------------------------------------------
+SET @InicioProcedimiento = GETDATE();
+
+-- Realizar 100 inserts usando procedimientos almacenados
+SET @i = 1;
+WHILE @i <= 100
+BEGIN
+    -- Declaramos la variable para total_venta
+    SET @totalVenta = 100.0 + CONVERT(FLOAT, @i);
+
+    -- Llamar al procedimiento para insertar en Venta
+    EXEC RegistrarVenta 
+        @fecha_venta = '2024-11-12', 
+        @total_venta = @totalVenta, 
+        @id_usuario = 1, 
+        @id_tipo = 1, 
+        @id_cliente = 1,
+        @id_venta = @id_venta OUTPUT;
+
+    -- Llamar al procedimiento para insertar en Detalle_Venta
+    EXEC RegistrarDetalleVenta 
+        @id_venta = @id_venta, 
+        @id_producto = 1, 
+        @cantidad = 2, 
+        @subtotal = 50.0;
+
+    EXEC RegistrarDetalleVenta 
+        @id_venta = @id_venta, 
+        @id_producto = 2, 
+        @cantidad = 1, 
+        @subtotal = 25.0;
+
+    SET @i = @i + 1;
+END
+
+SET @FinProcedimiento = GETDATE();
+
+----------------------
+-- Comparar tiempos --
+----------------------
+SELECT 
+    DATEDIFF(MILLISECOND, @InicioDirecto, @FinDirecto) AS Tiempo_Insert_Directo_MS,
+    DATEDIFF(MILLISECOND, @InicioProcedimiento, @FinProcedimiento) AS Tiempo_Procedimientos_MS;
+GO
+```
+
+![tiempo](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/239ca2b358e946ac1dd4f8543040f7f3d1cb9027/script/Tema2_Procedimientos/pa5.png)
+
+Con estas pruebas podemos concluir que los INSERTS directos son más eficientes en términos de tiempo de ejecución, ya que evitan la sobrecarga de la compilación del procedimiento, el paso de parámetros, el manejo de errores y las transacciones adicionales. Por otro lado, los procedimientos almacenados ofrecen mayor flexibilidad y seguridad, especialmente para tareas complejas que requieren lógica de negocio y manejo de múltiples tablas.
 
 ---
 
