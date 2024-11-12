@@ -445,7 +445,7 @@ WHERE
 
 Resultado: 
 
-![roles]()
+![roles](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/cf40138356295b90d66a1ef8fafa86505ddf47c3/script/Tema1_Permisos/mp1.png)
 
 ```sql
 -- Una vez verificado el rol de cada usuario podemos ver los permisos asignados
@@ -470,7 +470,7 @@ WHERE
 
 Resultado: 
 
-![permisos]()
+![permisos](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/cf40138356295b90d66a1ef8fafa86505ddf47c3/script/Tema1_Permisos/mp2.png)
 
 Con estas dos pruebas podemos verificar que todos los usuarios tienen los roles y permisos correspondientes. 
 
@@ -542,7 +542,7 @@ Resultado:
 
 ![insert](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/cf01f12f4cf70bc04e97966a3ff33dd3cc3d75b8/script/Tema1_Permisos/mp7.png)
 
-Como este usuario tiene permiso de ejecución sobre el procedimiento sp_InsertarPersona, la ejecución se realizó correctamente y se registró una nueva persona.
+Dado que este usuario solo tiene permiso de ejecución sobre el procedimiento sp_InsertarPersona, la inserción se realizó correctamente y se registró una nueva persona. Sin embargo, al intentar realizar un INSERT directo en la tabla, la operación fue denegada debido a la falta de permisos necesarios.
 
 Por ultimo vamos a hacer una comparación de comportamiento entre un usuario con permiso de lectura (EmpleadoLectura) y otro que no (Empleado).
 
