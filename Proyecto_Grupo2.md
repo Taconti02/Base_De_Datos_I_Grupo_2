@@ -687,7 +687,7 @@ Funciono correctamente la transacción consistente
 Parte 2: Provocar un Error y Verificar la Consistencia
 Se produjo el error y se verifica que el manejo de transacciones es efectivo.
 
-![MTTA2(https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/main/script/Tema4_%20%20Manejo%20de%20transacciones%20y%20transacciones%20anidadas/MTTA2.png)
+![MTTA2](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/main/script/Tema4_%20%20Manejo%20de%20transacciones%20y%20transacciones%20anidadas/MTTA2.png)
 
 *MTTA2*
 
