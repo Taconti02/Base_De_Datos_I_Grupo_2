@@ -708,6 +708,8 @@ SELECT COUNT(*) AS total_ventas FROM Venta WHERE MONTH(fecha_venta) = 11 AND YEA
 GO
 ```
 
+Resultado: 
+
 ![contar](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/acafc1322956ec9bc921b18a7b1b3b9a06d24105/script/Tema2_Procedimientos/pa4.png)
 
 ```sql
@@ -729,6 +731,8 @@ SET @stock = dbo.VerificarStockProducto(1);
 -- Mostrar el resultado
 PRINT 'Stock disponible para el producto con ID 1: ' + CAST(@stock AS VARCHAR(50));
 ```
+
+Resultado: 
 
 ![contar](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/04e2ceee7b70700b1b83bfd936bca13dfbc945f1/script/Tema2_Procedimientos/pa6.png)
 
@@ -829,6 +833,8 @@ SELECT
     DATEDIFF(MILLISECOND, @InicioProcedimiento, @FinProcedimiento) AS Tiempo_Procedimientos_MS;
 GO
 ```
+
+Resultado: 
 
 ![tiempo](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/239ca2b358e946ac1dd4f8543040f7f3d1cb9027/script/Tema2_Procedimientos/pa5.png)
 
