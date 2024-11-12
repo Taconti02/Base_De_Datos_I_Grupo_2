@@ -637,14 +637,14 @@ Sin índices, ejecutaremos una consulta y registraremos el plan de ejecución y 
 
 *2OCTI*
 
-Parte 3: Definir un Índice Agrupado sobre la Columna Fecha y Repetir la Consulta
+**Parte 3: Definir un Índice Agrupado sobre la Columna Fecha y Repetir la Consulta**
 Eliminamos el índice agrupado existente (el de la clave primaria) y creamos un nuevo índice agrupado en fecha_venta.
 
 ![3OCTI](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/main/script/Tema3_Optimizaci%C3%B3n%20de%20Consultas%20a%20Trav%C3%A9s%20de%20%C3%8Dndices/3OCTI.png)
 
 *3OCTI*
 
-Parte 4: Borrar el Índice Creado
+**Parte 4: Borrar el Índice Creado**
 Eliminamos el índice agrupado.
 
 ![4OCTI](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/main/script/Tema3_Optimizaci%C3%B3n%20de%20Consultas%20a%20Trav%C3%A9s%20de%20%C3%8Dndices/4OCTI.png)
@@ -652,7 +652,7 @@ Eliminamos el índice agrupado.
 *4OCTI*
 
 
-Parte 5: Crear Otro Índice Agrupado Incluyendo las Columnas Seleccionadas y Repetir la Consulta
+**Parte 5: Crear Otro Índice Agrupado Incluyendo las Columnas Seleccionadas y Repetir la Consulta**
 Creamos un índice agrupado que incluya columnas adicionales (fecha_venta y id_cliente) y repetimos la consulta.
 
 ![5OCTI](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/main/script/Tema3_Optimizaci%C3%B3n%20de%20Consultas%20a%20Trav%C3%A9s%20de%20%C3%8Dndices/5OCTI.png)
@@ -664,7 +664,7 @@ Creamos un índice agrupado que incluya columnas adicionales (fecha_venta y id_c
 *6OCTI*
 
 
-Conclusiones:
+**Conclusiones:**
 -Consulta sin Índice:
 La consulta sin ningún índice requiere un escaneo completo de la tabla (table scan), lo que resulta en un tiempo de respuesta elevado de 8 segundos y un uso intensivo de I/O y CPU. Esto se debe a la necesidad de leer cada fila de la tabla para encontrar las filas que coinciden con el rango de fechas.
 -Consulta con Índice Agrupado en fecha_venta:
@@ -677,14 +677,14 @@ Al aplicar un índice agrupado en fecha_venta e id_cliente, la mejora en el tiem
 ### Manejo de transacciones y transacciones anidadas: Resultados
 
 
-Parte 1: Transacción Consistente
-Funciono correctamente la transacción consistente
+**Parte 1: Transacción Consistente**
+Funciono correctamente la transacción consistente.
 
 ![MTTA1](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/main/script/Tema4_%20%20Manejo%20de%20transacciones%20y%20transacciones%20anidadas/MTTA1.png)
 
 *MTTA1*
 
-Parte 2: Provocar un Error y Verificar la Consistencia
+**Parte 2: Provocar un Error y Verificar la Consistencia**
 Se produjo el error y se verifica que el manejo de transacciones es efectivo.
 
 ![MTTA2](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/main/script/Tema4_%20%20Manejo%20de%20transacciones%20y%20transacciones%20anidadas/MTTA2.png)
@@ -692,7 +692,7 @@ Se produjo el error y se verifica que el manejo de transacciones es efectivo.
 *MTTA2*
 
 
-Conclusión en base a pruebas realizadas:
+**Conclusión en base a pruebas realizadas:**
 - Transacción Consistente:
 En el primer script, si todas las operaciones son exitosas, los cambios se aplican a la base de datos. Si ocurre algún error en cualquier paso, la transacción se revierte, asegurando que ningún cambio parcial se aplique. Esto demuestra la efectividad de las transacciones para mantener la integridad de los datos.
 - Transacción con Error Intencional:
