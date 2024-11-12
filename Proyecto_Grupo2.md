@@ -610,10 +610,59 @@ Con estas dos pruebas podemos verificar que los procedimientos definidos funcion
 **Parte 2: Realizar una Búsqueda por Periodo y Registrar el Plan de Ejecución**
 Sin índices, ejecutaremos una consulta y registraremos el plan de ejecución y los tiempos de respuesta.
 
-![producto](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/b011172e1b0dfb832257aa8c81ea9215f6868f09/script/Tema3_Optimización de Consultas a Través de Índices/1OCTI.png)
----
+*OCTI1*
+*OCTI2*
 
-### Manejo de transacciones: Resultados
+Parte 3: Definir un Índice Agrupado sobre la Columna Fecha y Repetir la Consulta
+Eliminamos el índice agrupado existente (el de la clave primaria) y creamos un nuevo índice agrupado en fecha_venta.
+
+*OCTI3*
+
+Parte 4: Borrar el Índice Creado
+Eliminamos el índice agrupado.
+
+*OCTI4*
+
+
+Parte 5: Crear Otro Índice Agrupado Incluyendo las Columnas Seleccionadas y Repetir la Consulta
+Creamos un índice agrupado que incluya columnas adicionales (fecha_venta y id_cliente) y repetimos la consulta.
+
+*OCTI5*
+*OCTI6*
+
+
+Conclusiones:
+-Consulta sin Índice:
+La consulta sin ningún índice requiere un escaneo completo de la tabla (table scan), lo que resulta en un tiempo de respuesta elevado de 8 segundos y un uso intensivo de I/O y CPU. Esto se debe a la necesidad de leer cada fila de la tabla para encontrar las filas que coinciden con el rango de fechas.
+-Consulta con Índice Agrupado en fecha_venta:
+Al aplicar un índice agrupado en la columna fecha_venta, se observa una mejora significativa en el tiempo de respuesta en 7 segundos. El motor de la base de datos puede acceder rápidamente a las filas que coinciden con el rango de fechas utilizando el índice, reduciendo así la cantidad de datos que necesita escanear.
+-Consulta con Índice Agrupado en fecha_venta e id_cliente:
+Al aplicar un índice agrupado en fecha_venta e id_cliente, la mejora en el tiempo de respuesta es 7 segundos al igual que índice agrupado en la columna fecha_venta.
+
+
+
+### Manejo de transacciones y transacciones anidadas: Resultados
+
+
+Parte 1: Transacción Consistente
+Funciono correctamente la transacción consistente
+
+MTTA1
+
+Parte 2: Provocar un Error y Verificar la Consistencia
+Se produjo el error y se verifica que el manejo de transacciones es efectivo.
+
+MTTA2
+
+
+Conclusión en base a pruebas realizadas:
+-Transacción Consistente:
+En el primer script, si todas las operaciones son exitosas, los cambios se aplican a la base de datos. Si ocurre algún error en cualquier paso, la transacción se revierte, asegurando que ningún cambio parcial se aplique. Esto demuestra la efectividad de las transacciones para mantener la integridad de los datos.
+-Transacción con Error Intencional:
+En el segundo script, al provocar un error intencional después del primer INSERT, la transacción se revierte completamente. Esto asegura que no se realice ningún cambio en la base de datos, manteniéndola consistente y sin alteraciones parciales. Esta prueba confirma que el manejo de errores dentro de una transacción es efectivo para mantener la consistencia y atomicidad de los datos.
+
+
+
 
 ## CAPÍTULO V: CONCLUSIONES
 
