@@ -440,12 +440,12 @@ JOIN
     sys.database_principals rp ON drm.role_principal_id = rp.principal_id
 WHERE 
     dp.type IN ('S', 'U')  
-    AND dp.name IN ('Juan', 'Marta', 'Ana');  
+    AND dp.name IN ('Juan', 'Marta'); 
 ```
 
 Resultado: 
 
-![roles](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/54c6764f611a53bd614f1977c89003bc008df28b/script/Tema1_Permisos/mp1.png)
+![roles](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/f9b2237a138627579f4f4cd156a337418587f977/script/Tema1_Permisos/mp1.png)
 
 ```sql
 -- Una vez verificado el rol de cada usuario podemos ver los permisos asignados
@@ -464,35 +464,85 @@ JOIN
 JOIN 
     sys.objects o ON p.major_id = o.object_id
 WHERE 
-    rp.name IN ('Administrador', 'Empleado', 'Gerente')
+    rp.name IN ('Administrador', 'Empleado')
     AND o.name IN ('Persona', 'Venta', 'Detalle_Venta', 'Cliente', 'Producto', 'Usuario');
 ```
 
 Resultado: 
 
-![permisos](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/54c6764f611a53bd614f1977c89003bc008df28b/script/Tema1_Permisos/mp2.png)
+![permisos](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/d86dcdbc887b941e5d6150cfe352b0675ab34e5d/script/Tema1_Permisos/mp2.png)
 
 Con estas dos pruebas podemos verificar que todos los usuarios tienen los roles y permisos correspondientes. 
 
 Ahora realizaremos algunas pruebas de acceso simulando la ejecución de operaciones por parte de los usuarios.
-Nos conectaremos con un usuario administrador usando login admin.
+Nos conectaremos con un usuario con Rol de administrador usando login admin.
 
-![login]()
+![login](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/a72bd5972ebf9337ec3cd2a0a24ddb7f923d3fe2/script/Tema1_Permisos/mp3.png)
 
-
+Vamos a realizar un INSERT sobre la tabla Persona
 
 ```sql
--- Un administrador debería:
--- Poder realizar una consulta SELECT en la tabla Persona
--- Poder realizar un INSERT directo en la tabla Persona
--- Poder modificar un registro existente en la tabla Persona
--- Poder eliminar un registro en la tabla Persona
+-- INSERT directo en la tabla Persona
+INSERT INTO Persona (nombre, apellido, email, telefono, dni) 
+VALUES ('Carlos', 'López', 'carloslopez@gmail.com', '3791234567', 45678901);
 
+-- Verificar que el registro se haya insertado
+SELECT * FROM Persona WHERE nombre = 'Carlos' AND apellido = 'López';
 
+-- INSERT usando el procedimiento almacenado sp_InsertarPersona
+EXEC sp_InsertarPersona 
+    @nombre = 'Ana', 
+    @apellido = 'Gomez', 
+    @email = 'anagomez@gmail.com', 
+    @telefono = '3797654321', 
+    @dni = 98765432;
 
+-- Verificar que el registro se haya insertado
+SELECT * FROM Persona WHERE nombre = 'Ana' AND apellido = 'Gomez';
 ```
 
-![insert]()
+Resultado: 
+
+![insert](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/0864591312f425fa5c4635499eb4933c0ad711bd/script/Tema1_Permisos/mp4.png)
+
+Como este usuario tiene permisos de administrador, puede realizar INSERT directamente en la tabla Persona y también a través del procedimiento almacenado sp_InsertarPersona.
+
+Ahora realizaremos lo mismo pero con un usuario que tenga el Rol de Empleado.
+
+![login](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/ba328a37a81f66394a1c9f4237ecec72e0d4f145/script/Tema1_Permisos/mp5.png)
+
+Primero realizaremos un INSERT directo sobre la tabla Persona.
+
+```sql
+INSERT INTO Persona (nombre, apellido, email, telefono, dni) 
+VALUES ('Luis', 'Garcia', 'luisgarcia@gmail.com', '3795432109', 12345678);
+
+-- Esto debería producir un error de permiso, ya que este usuario solo tiene permisos de lectura.
+```
+
+Resultado: 
+
+![insert](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/0848a4fdbc8da4dac097963ab29075d40150a3fb/script/Tema1_Permisos/mp6.png)
+
+Ahora realizaremos lo mismo pero a través del procedimiento almacenado sp_InsertarPersona.
+
+```sql
+EXEC sp_InsertarPersona 
+    @nombre = 'Laura', 
+    @apellido = 'Ramirez', 
+    @email = 'lauraramirez@gmail.com', 
+    @telefono = '3794567890', 
+    @dni = 11223344;
+
+-- Verificar que el registro se haya insertado
+SELECT * FROM Persona WHERE nombre = 'Laura' AND apellido = 'Ramirez';
+```
+
+Resultado: 
+
+![insert](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/cf01f12f4cf70bc04e97966a3ff33dd3cc3d75b8/script/Tema1_Permisos/mp7.png)
+
+Como este usuario tiene permiso de ejecución sobre el procedimiento sp_InsertarPersona, la ejecución se realizó correctamente y se registró una nueva persona.
 
 ---
 
