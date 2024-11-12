@@ -1,5 +1,5 @@
 -- Conectarse a la base de datos `base_sistema_ventas`
-USE base_sistema_ventas4;
+USE base_sistema_ventas;
 GO
 
 -- 1. Insertar categorías (si no existen)
