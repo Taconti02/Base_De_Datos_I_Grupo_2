@@ -15,7 +15,7 @@ END
 IF NOT EXISTS (SELECT 1 FROM Perfil)
 BEGIN
 	INSERT INTO Perfil (id_perfil, descripcion) VALUES 
-	(1, 'Administrador'), (2, 'Gerente'), (3, 'Empleado');
+	(1, 'Administrador'), (2, 'Empleado');
 END 
 
 -- 3. Insertar formas de pago (si no existen)
@@ -41,7 +41,7 @@ INSERT INTO Usuario (nombre_usuario, contraseña, id_usuario, id_perfil) VALUES
 ('Carlos', '12345678',
      (SELECT id_persona 
       FROM Persona 
-      WHERE dni = 34567890), 3);
+      WHERE dni = 34567890), 2);
 
 -- 7. Insertar clientes
 INSERT INTO Cliente (id_cliente)
