@@ -308,6 +308,11 @@ GO
 ### Manejo de transacciones y transacciones anidadas
 Una transacción es un conjunto de operaciones que se tratan como una única unidad, es decir, todas las modificaciones realizadas dentro de la transacción deben confirmarse en conjunto o revertirse por completo en caso de error. Para iniciar una transacción se utiliza la sentencia BEGIN TRAN. Si alguna operación dentro de la transacción falla, es necesario revertir todos los cambios realizados con ROLLBACK TRAN, devolviendo la base de datos a su estado inicial. Si la transacción tiene éxito, se finaliza con COMMIT TRAN y los cambios realizados se guardan permanentemente en la base de datos. Además, los puntos de recuperación, o SavePoints, permiten hacer reversiones parciales, lo que significa que puedes deshacer solo hasta un punto específico de la transacción sin tener que revertirla por completo. También se pueden manejar las transacciones tomadas como excepciones mediante un TRY o un CATCH, así como con un operador condicional IF.
 
+**Ventajas de Usar Transacciones:**
+- Consistencia de los Datos: Asegura que la base de datos permanezca en un estado consistente incluso en caso de error
+- Control de Errores: Permite manejar y revertir errores sin afectar la integridad de los datos
+- Aislamiento: Las transacciones aseguran que las operaciones concurrentes no interfieran entre sí, proporcionando aislamiento
+
 SQL Server admite varios modos de transacción, cada uno con características específicas:
 
 - **Transacciones de confirmación automática:** Cada instrucción que se ejecuta se trata como una transacción independiente. No es necesario especificar un inicio ni fin de transacción; cada operación se confirma o se revierte automáticamente.
