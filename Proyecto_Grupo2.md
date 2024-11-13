@@ -849,6 +849,8 @@ Con estas pruebas podemos concluir que los INSERTS directos son más eficientes 
 
 ### Optimización de consultas a través de índices: Resultados
 
+Tendremos que ejecutar el Script [SQL_Optimización de consultas a través de índices](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/bd01b6df59dbf3c4789ac4b8144a01e016f7daaa/script/Tema3_Optimizaci%C3%B3n%20de%20Consultas%20a%20Trav%C3%A9s%20de%20%C3%8Dndices/SQL_Optimizaci%C3%B3n%20de%20Consultas%20a%20Trav%C3%A9s%20de%20%C3%8Dndices.sql)
+
 **Parte 2: Realizar una Búsqueda por Periodo y Registrar el Plan de Ejecución**
 
 Sin índices, ejecutaremos una consulta y registraremos el plan de ejecución y los tiempos de respuesta.
@@ -903,6 +905,8 @@ Al aplicar un índice agrupado en fecha_venta e id_cliente, la mejora en el tiem
 ---
 
 ### Manejo de transacciones y transacciones anidadas: Resultados
+
+Tendremos que ejecutar el Script [Manejo de transacciones y transacciones anidadas](https://github.com/Taconti02/Base_De_Datos_I_Grupo_2/blob/bd01b6df59dbf3c4789ac4b8144a01e016f7daaa/script/Tema4_%20%20Manejo%20de%20transacciones%20y%20transacciones%20anidadas/Manejo%20de%20transacciones%20y%20transacciones%20anidadas.sql)
 
 **Parte 1: Transacción Consistente**
 
